@@ -6,7 +6,19 @@
 
     <ol class="carousel-indicators">
       <?php
-        $imovel = new WP_Query(array('post_type' => 'imoveis', 'orderby' => 'date', 'posts_per_page'=>'10') );
+        $imovel = new WP_Query(
+          array(
+            'post_type' => 'imoveis',
+            'posts_per_page'=>'10',
+            'tax_query' => array(
+              array(
+                'taxonomy' => 'imovel',
+                'field' => 'slug',
+                'terms' => 'exibe-na-home	'
+              )
+            )
+          )
+        );
         $idsImoveis = [];
         while($imovel->have_posts()): $imovel->the_post();
           $idsImoveis[] = get_the_id( );
@@ -20,28 +32,21 @@
         wp_reset_postdata(  );
         $sizeBanners = count($idsBanners);
         $sizeImoveis = count($idsImoveis);
-        $size = $sizeBanners<$sizeImoveis?$sizeBanners:$sizeImoveis;
-        for($slide = 0; $slide < $size*2; $slide++){
+        $size = $sizeBanners>$sizeImoveis?$sizeBanners:$sizeImoveis;
+        for($slide = 0; $slide < $sizeImoveis+$sizeBanners; $slide++){
       ?>
       <li data-target="#carouselExampleCaptions" data-slide-to="<?php echo $slide; ?>" class="<?php if($slide == 0) : echo "active"; endif; ?>"></li>
       <?php
         }
       ?>
     </ol>
-  <div class="carousel-inner">
-    <?php
-      $first = true;
-      for($slide = 0 ; $slide<$size ; $slide++){
-        $fieldsImovel = get_fields( $idsImoveis[$slide] );
-        $fieldsBanner = get_fields( $idsBanners[$slide] );
-        if($rows = have_rows("informacoes_legais", $idsImoveis[$slide]) ){
-          while( have_rows("informacoes_legais", $idsImoveis[$slide]) ): the_row();
-            $quartos = get_sub_field("quartos");
-            $metragem = get_sub_field("metragem");
-            $vagas = get_sub_field("vagas");
-          endwhile;
-        }
-    ?>
+    <div class="carousel-inner">
+      <?php
+        $first = true;
+        for($slide = 0 ; $slide<$size ; $slide++){
+          if(isset($idsBanners[$slide])){
+            $fieldsBanner = get_fields( $idsBanners[$slide] );
+      ?>
       <!--banner-->
       <div class="carousel-item <?php if($first): echo "active"; $first = false; endif; ?>">
         <a href="<?php echo $fieldsBanner["link"] ?>">
@@ -49,6 +54,18 @@
         </a>
       </div>
       <!--empreendimento-->
+      <?php
+          }
+          if(isset($idsImoveis[$slide])){
+            $fieldsImovel = get_fields( $idsImoveis[$slide] );
+            if($rows = have_rows("informacoes_legais", $idsImoveis[$slide]) ){
+              while( have_rows("informacoes_legais", $idsImoveis[$slide]) ): the_row();
+                $quartos = get_sub_field("quartos");
+                $metragem = get_sub_field("metragem");
+                $vagas = get_sub_field("vagas");
+              endwhile;
+            }
+      ?>
       <div class="carousel-item">
         <div class="caption">
 
@@ -87,7 +104,10 @@
           <?php echo get_the_post_thumbnail($idsImoveis[$slide], 'full', array('class' => 'd-block w-100 img-filter')); ?>
         </a>
       </div>
-      <?php } ?>
+      <?php
+        }
+      }
+      ?>
     </div>
 
 
