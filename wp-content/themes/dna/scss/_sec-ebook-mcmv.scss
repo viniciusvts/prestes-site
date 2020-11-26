@@ -1,0 +1,48 @@
+#ebook {
+  background: url('../img/bgebook.png') no-repeat center;
+  @include breakpoint(smartphones){
+    background-position: right;
+    background-size: cover;
+  }
+  padding-bottom: 20px;
+  padding-top: 20px;
+  transform: translateY(-6px);
+  svg {
+    display: block;
+    margin: 20px auto 20px auto;
+    max-width: 250px;
+  }
+  h2 {
+    text-align: center;
+    @include breakpoint(smartphones){
+      font-size: 40px;
+    }
+  }
+}
+#ebook-row {
+  padding: 20px 0;
+  p {
+    text-align: center;
+  }
+  img {
+    width: 435px;
+    height: auto;
+    object-fit: cover;
+    @include breakpoint(smartphones){
+      width: 300px;
+    }
+  }
+  #img-ebook {
+    text-align: center;
+  }
+  #title-sec {
+    font-size: 30px;
+    margin-top: 100px;
+    span {
+      color: #8eb91e;
+    }
+    @include breakpoint(smartphones){
+      margin-top: 0;
+    }
+  }
+}

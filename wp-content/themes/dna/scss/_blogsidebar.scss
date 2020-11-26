@@ -1,0 +1,98 @@
+.bp-blog-sidebar{
+    border-left: 1px solid gray;
+    padding-left: 30px;
+    padding-right: 0px;
+    @include breakpoint(smartphones){
+        padding-left: 10px;
+        padding-right: 10px;
+        border-left: none;
+    }
+    
+}
+@media only screen and (max-width: 767px){
+    .bp-blog-sidebar{
+        border-right: 1px solid gray;
+        @include breakpoint(smartphones){
+            border-right: none;
+        }
+    }
+}
+.bp-mostvisited{
+    .bp-mostvisited-title{
+        text-align: center;
+    }
+    .bp-mostvisited-line{
+        margin-bottom: 20px;
+        svg{
+            width: 100%;
+        }
+    }
+    .bp-mostvisited-row{
+        display: flex;
+        margin-right: -15px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    .bp-mostvisited-postimage{
+        padding-left: 0px;
+        padding-right: 0px;
+        img{
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+    }
+    .bp-mostvisited-content{
+        margin-left: 10px;
+        .bp-mostvisited-posttitle{
+            font-size: .9rem;
+            font-weight: 600;
+            color: gray;
+        }
+        .bp-mostvisited-postdate{
+            font-size: .9rem;
+            font-weight: 100;
+            color: gray;
+        }
+    }
+}//fim bp-mostvisited
+.bp-category{
+    margin-top: 100px;
+    .bp-category-title{
+        text-align: center;
+    }
+    .bp-category-line{
+        margin-bottom: 20px;
+        svg{
+            width: 100%;
+        }
+    }
+    ul{
+        list-style-type: none;
+        margin-left: -40px;
+        li{
+            padding: 10px;
+            text-align: center;
+        }
+        a{
+            color:gray;
+            &:hover{
+                color: black;
+                font-weight: bold;
+            }
+        }
+    }
+}//fim bp-category
+.bp-instagramfeed{
+    margin-top: 100px;
+    .bp-instagramfeed-title{
+        text-align: center;
+    }
+    .bp-instagramfeed-line{
+        margin-bottom: 20px;
+        svg{
+            width: 100%;
+        }
+    }
+}//fim bp-instagram-feed

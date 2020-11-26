@@ -1,0 +1,225 @@
+#slider{
+    padding-top: 85px;
+    background-image: linear-gradient(#272727 15%, white);
+    
+    @include verticalAnimation(2s, 3s);
+
+    #mcmv {
+        position: relative;
+        .breadcrumbs{      
+            a{          
+                color: black;
+                font-weight: bold;
+            }
+        }
+        .caption{
+            color: black;
+            width: 470px;
+            @include breakpoint(smartphones){
+                width: unset;
+            }
+        }
+        img{
+            height: 100%;
+            max-height: 768px;
+            /* object-position: right; */
+            object-fit: cover;
+            width: 589px !important;
+            /* transform: rotateX(45deg); */
+            transform: translate(118%, 0);
+            @include breakpoint(hdDesktops){
+                height: 628px;
+            }
+            @include breakpoint(smartphones){
+                object-fit: cover;
+                height: 400px;
+                transform: translate(0%, 0%);
+            }
+        }
+        #filter {
+            display: none;
+            @include breakpoint(smartphones){
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background-color: white;
+                z-index: 1;
+                opacity: 0.9;
+            }
+        }
+    }
+    .caption{
+        position: absolute;
+        left: 15%;
+        text-align: left;
+        bottom: 40%;
+        color: white;
+        z-index: 1;
+        min-width: 40%;
+
+        .blockPress-btn{
+            @include breakpoint(smartphones){
+                display: none;
+            }
+        }
+
+        @include breakpoint(smartphones){
+            bottom: 10%;
+            width: 100%;
+            left: 0%;
+            padding: 10px;
+        }
+
+        h1{
+            text-align: left;
+            font-size: 30px;
+            @include breakpoint(smartphones){
+                text-align: center;
+            }
+        }
+
+        h5{
+            font-size: 50px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 20px;
+            @include breakpoint(smartphones){
+                font-size: 18px;
+                text-align: center;
+            }
+        }
+        .center svg{
+            @media (min-width: $tablets){
+                margin-left: unset;
+            }
+        }
+        svg{
+            fill: #fff;
+            width: 40px;
+            height: 40px;
+            
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            display: block;
+        }
+
+        p{
+            text-align: left;
+            font-size: 14px;
+            @include breakpoint(smartphones){
+                text-align: center;
+            }
+        }
+    }
+
+    .breadcrumbs{        
+        a{
+            text-decoration: none;            
+            color: white;
+            font-weight: bold;
+            &:hover{
+                color: $quaternaryColor;
+            }
+        }
+        #crumbs{
+            text-align: left;
+            @include breakpoint(smartphones){
+                text-align: center;
+            }
+        }
+    }
+
+    .flat{
+        max-height: 400px;
+        p{
+            text-align: left;
+        }
+    }
+
+    .container-slider{
+        max-width: 300px;
+        @include breakpoint(smartphones){
+            max-width: 100%;
+         }
+    }
+
+    img{
+        height: 210px;
+        object-position: top left;
+        object-fit: cover;
+        @media (min-width: $smartphones){
+            height: 350px;
+        }
+        @media (min-width: $tablets){
+            height: 400px;
+        }
+        @media (min-width: $largeDesktops){
+            object-position: top left;
+            height: 628px;
+        }
+    }
+    &.slider-home img{
+        object-position: top center;
+    }
+}
+
+.carousel-indicators{
+    @include breakpoint(smartphones){
+        display: none;
+    }
+}
+
+.customPrevBtn, .customNextBtn {
+    font-weight: 700;
+    color: grey;
+    font-size: 24px;
+    position: absolute;
+    display: none;
+    @include breakpoint(smartphones){
+        display: block;
+        transform: translateY(200px);
+    }
+}
+.customPrevBtn {
+    left: 2px;
+    background-color: white;
+    width: 38px;
+    height: 30px;
+    z-index: 2;
+    border-radius: 50%;
+    text-align: center;
+    padding-bottom: 38px;
+    svg {
+        width: 36px;
+        height: 20px;
+        margin-bottom: 6px;
+        transform: rotate(180deg);
+      }
+}
+.customNextBtn {
+    right: 2px;
+    background-color: white;
+    width: 38px;
+    height: 30px;
+    z-index: 2;
+    border-radius: 50%;
+    text-align: center;
+    padding-bottom: 38px;
+    svg {
+        width: 36px;
+        height: 20px;
+        margin-bottom: 6px;
+      }
+}
+@media (min-width: 1920px){
+    .pl-hd-20 {
+        padding-left: 20px;
+    }
+    .pr-hd-20 {
+        padding-right: 20px;
+    }
+}

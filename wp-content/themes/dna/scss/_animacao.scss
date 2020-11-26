@@ -1,0 +1,19 @@
+/*Efeitos de animação*/
+.esconder{
+    display: none;
+    @include transition(0.2s all ease-out);
+}
+
+.animar{
+    opacity: 0.1;
+    transform: scale(0.8);
+    @include transition(0.8s all ease);
+}
+
+.animar.fade-in{
+    opacity: 1;
+    transform: scale(1);
+    @include transition(0.8s all ease);
+}
+  
+/*Efeitos de animação*/

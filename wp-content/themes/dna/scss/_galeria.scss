@@ -1,0 +1,70 @@
+#gallery{
+    padding: 5% 10%;
+    width: 100%;
+    background: $baseColor;
+
+    .header{
+        h2{
+            text-align: left;
+            color: white;
+        }
+
+        ul{
+            margin-left: 0;
+            display: flex;
+            margin-top: 50px;
+            float: right;
+            text-align: center;
+            li{
+                list-style: none;
+                text-transform: uppercase;
+                color: white;
+                padding: 10px;
+                a{
+                    text-decoration: none;
+                    color: white;
+                    &:hover{
+                       color: $quinternaryColor; 
+                    }
+                }                
+            }
+
+            li.categories-active a{
+                color: $quinternaryColor;
+            }
+
+            @include breakpoint(smartphones){
+                display: contents;
+            }
+            
+        }
+    }
+
+    img{
+        object-fit: cover;
+        @include transition(0.2s all ease);
+        &:hover{
+            filter: brightness(110%);
+        }
+    }
+
+    iframe, img{
+        margin: 10px 0;
+        height: 130px;
+        @media (min-width: $smartphones){
+            height: 290px;
+        }
+        @media (min-width: $tablets){
+            height: 110px;
+        }
+        @media (min-width: $desktops){
+            height: 150px;
+        }
+        @media (min-width: $largeDesktops){
+            height: 190px;
+        }
+        @media (min-width: $fullHdDesktops){
+            height: 290px;
+        }
+    }
+}

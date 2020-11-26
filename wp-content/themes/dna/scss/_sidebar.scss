@@ -1,0 +1,68 @@
+
+.card{
+    margin-bottom: 40px;
+
+    .btn{
+        background: $primaryColor;
+        color: white;
+        margin-top: 20px;
+        width: 100%;
+        font-size: 15px;
+    }
+}
+
+.ligamos-para-voce, .corretores-online{
+    border-radius: 4px; 
+    color: white;
+}
+
+.corretores-online{
+    height: 100%;
+}
+
+.ligamos-para-voce p, .corretores-online p{
+    font-size: 0.9rem
+}
+
+.ligamos-para-voce button, .corretores-online button{background: white; margin-top: 13px; font-weight:700; border-radius: 3px; width: 100%; bottom:0; border: none; padding: 5px; text-transform: uppercase}
+.ligamos-para-voce button{color:$ternaryColor;}
+.ligamos-para-voce-footer, .corretores-online-footer{position: absolute; right: 0; left: 0; margin: 0 auto; bottom: 10px; margin: 0 20px}
+.ligamos-para-voce-left, .ligamos-para-voce-right, .corretores-online-right{padding: 15px;}
+.ligamos-para-voce-left{background: url('../../dna/img/destaque-vendas.jpg');}
+.ligamos-para-voce-left, .corretores-online-left{background-position: center; background-size: cover; background-repeat: no-repeat; border-radius: 4px 0 0 4px}
+.ligamos-para-voce-right span{font-size: 0.7rem}
+
+.ligamos-para-voce-sidebar{
+    background: $baseColor;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 20px;
+
+    .wpcf7-validation-errors, .wpcf7-mail-sent-ok{
+        color: white;
+    }
+}
+.ligamos-para-voce-up{background: url('../../dna/img/atendente.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; min-height: 200px; ;border-radius: 4px 4px 0 0}
+.ligamos-para-voce-down{text-align: center; padding: 20px; position: relative; padding-bottom: 40px;}
+.ligamos-para-voce-down p{font-size: 0.8rem; text-align: center}
+.ligamos-para-voce-down input{background: none; border: 1px solid white; border-radius: 4px; width: 100%; padding: 7px; left: 0; right: 0; margin: 2px 0; background: white;}
+.ligamos-para-voce-down input::placeholder{color: white;}
+.ligamos-para-voce-down input[type="submit"]{background-color:$primaryColor; border: none; padding: 15px}
+.ligamos-para-voce-sidebar button{display: block; color:#faa401; font-weight:700; text-transform: uppercase; width: 100%; border: 0; padding:5px; border-radius: 4px; background-color: white;}
+
+.preco-promocional h4, .preco-promocional h3{font-size: 27px; margin: 0; text-align: left;}
+.preco-promocional h3{color: $primaryColor}
+.preco-promocional span{margin: 0}
+.preco-observacao{font-size: 0.69rem; font-weight: 900}
+
+.ligamos-para-voce{
+    
+    background: $baseColor;
+    height: 100%; 
+    margin-bottom: 5%;
+    img{
+        position: absolute;
+        left: 0;
+        object-fit: cover;
+    }    
+}

@@ -1,0 +1,31 @@
+#pop-up-simulator {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.801);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    .close-pop-up {
+        position: absolute;
+        right: 115px;
+        color: white;
+        font-size: 40px;
+        top: 0;
+        cursor: pointer;
+        transition: .8s;
+        &:hover {
+            color: #8EB91E;
+            transition: .8s;
+        }
+    }
+    #formSimulator {
+        width: 100%;
+        max-width: 550px;
+        background-color: white;
+        height: 100%;
+        max-height: 560px;
+        padding: 30px;
+    }
+}

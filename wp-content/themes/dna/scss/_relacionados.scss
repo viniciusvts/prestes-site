@@ -1,0 +1,14 @@
+section#development {
+    div.title-related {
+        h2 {
+            font-size: 70px;
+        }
+        .center {
+            @include centerFilete();
+            margin-bottom: 5%;
+            svg {
+                width: 250px;
+            }
+        }
+    }
+}

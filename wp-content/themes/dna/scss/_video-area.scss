@@ -1,0 +1,47 @@
+#video-area {
+    position: relative;
+    background: url(../img/bg-fale-com-um-consultor.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    width: 100%;
+    #info{
+        color: white;
+        text-align: center;
+        margin: 80px auto 80px auto;
+        #bg-captions {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 40px;
+            max-width: 720px;
+            @include breakpoint(smartphones) {
+                display: none;
+            }
+            h3 {
+                font-size: 50px;
+                text-align: center;
+            }
+            h2 {
+                font-size: 60px;
+            }
+        }
+        #bg-button-play {
+            p {
+                text-align: center;
+                margin-top: 10px;
+            }
+            svg {
+                width: 96px;
+                height: 96px;
+                fill: white;
+                cursor: pointer;
+                &:hover{
+                    fill: $primaryColor;
+                    transition-duration: 0.5s;
+                }
+            }
+        }
+    }
+}

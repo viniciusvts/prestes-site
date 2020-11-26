@@ -1,0 +1,58 @@
+#awards{
+    @include padding();
+
+    h4{
+        text-align: center;
+    }
+
+    .image img{
+        width: 150px;
+        display: block;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px auto 20px auto;
+        border: 1px solid grey;
+        @include transition(0.2s all ease);
+
+        &:hover{
+            filter: brightness(120%);
+        }
+    }
+
+    .bullet{
+        background: $quinternaryColor;
+        padding: 35px;
+        border-radius: 50%;
+        height: 120px;
+        width: 120px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 10px;
+        margin-top: 40px;
+        @include transition(0.2s all ease);
+
+        &:hover{
+            background: $primaryColor;
+        }
+
+        svg{
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 50px;
+            fill: #fff;
+        }
+    }
+
+    
+
+    .description{
+        p{
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 12px;
+            min-height: 60px;
+        }
+    }
+}

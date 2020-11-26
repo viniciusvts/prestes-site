@@ -1,0 +1,62 @@
+#perguntas-frequentes {
+    background: url('../img/bg-pg-fr.jpg') no-repeat center;
+    height: 100%;
+    padding: 5% 0;
+    .head {
+        @include breakpoint(smartphones){
+            height: unset;
+        }
+        h3 {
+            text-align: start;
+        }
+        position: relative;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5%;
+        svg {
+            width: 250px;
+        }
+    }
+    .indicator-show {
+        position:absolute;
+        top:12px;
+        right:20px;
+        font-weight:700;
+        @include breakpoint(smartphones){
+            display: none;
+        }
+    }
+
+    svg{
+        display: block;
+        margin: 20px auto 20px auto;
+        max-width: 250px;
+    }
+    .btn-link {
+        color: white;
+        text-align: left;
+        &:hover {
+            text-decoration: none;
+            color: rgb(247, 235, 235);
+        }
+    }
+    .btn {
+        padding: 0% 10px;
+    }
+    .btn-link.focus, .btn-link:focus {
+        text-decoration: none;
+    }
+    .accordion {
+        .bg {
+            background-color: $baseColor;
+            color: white;
+            .head {
+                background-color: #3c3c3c;
+                border: solid 0.1px $baseColor;
+                padding: 10px 0;
+            }
+        }
+    }
+}

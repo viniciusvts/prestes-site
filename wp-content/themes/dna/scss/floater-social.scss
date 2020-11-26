@@ -1,0 +1,47 @@
+///Variável que define a posição do floater: left ou right
+///@author Vinicius de Santana
+$position: right;
+
+///Variável que define o tamanho  do floater em px
+///@example 50
+///@author Vinicius de Santana
+$tamanho: 60px;
+
+.floater-social{
+    #{$position}: $tamanho/5*-1;
+    top: 200px;
+    vertical-align: middle;
+    width: $tamanho;
+    position: fixed;
+    border-radius: 1rem;
+    padding: {
+        top: 1px;
+        bottom: 1px;
+        left: $tamanho/4;
+        right: $tamanho/4;
+    }
+    background: {
+        color: white;
+    }
+    .logos{
+        ul{
+            list-style-type: none;
+            padding: 0;
+            li{
+                padding: 5px 0;
+            }
+        }
+        img{
+            width: 100%;
+            height: auto;
+            &:hover{
+                transition: 0.2s;
+                @if $position == left{ 
+                    margin-right: $tamanho/5*-1;
+                } @else if $position == right{
+                    margin-left: $tamanho/5*-1;
+                }
+            }
+        }
+    }
+}

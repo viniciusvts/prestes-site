@@ -1,0 +1,191 @@
+#menu, #navbarTogglerDemo03{
+    ul.options {
+        li{
+            &.menu-item{
+                a{
+                    display: block;
+                    padding: .5rem 1rem;
+                    color: #fff;
+                    transition: .2s all ease;
+                }
+            }
+            display: inline;
+            margin: 10px 2.5px;
+
+            a{
+                color: white;
+                transition: 0.2s all ease;
+            }
+
+            svg{
+                height: 15px;
+                width: auto;
+                margin: 5px;
+                transition: 0.2s all ease;
+                fill: white;
+            }
+
+            &:hover a{
+                color: $primaryColor;
+                text-decoration: none;
+            }
+
+            &:hover svg{
+                fill: $primaryColor;
+            }
+        }
+    }
+
+    form{
+        display: flex;
+        @include breakpoint(desktops){
+            display: grid;
+        }
+    }
+}
+@media only screen and (max-width: $desktops){
+    #menu, #navbarTogglerDemo03{
+        ul.options {
+            display: grid;
+        }
+    }
+}
+
+.bp-ddmenu{
+    display: flex;
+    background: #535353;
+    padding: 15px;
+    min-height: 85px;
+
+    @include breakpoint(desktops){            
+        background: unset;
+        padding: 0;      
+    }
+
+    select{
+        height: 37px;
+        margin-right: 20px;
+        margin-top: 10px;
+        min-width: 150px;
+    }
+    .blockPress-btn{
+        padding: 0;
+    }
+}
+
+.navbar{
+    padding: 0;
+}
+
+// aqui começa a regra de exibir um men no mobile e outro no desktop
+// um tem a regra de collapse e outro não
+// #11177
+@media only screen and (max-width: $desktops){
+    .menu-desktop{
+        display: none!important;
+    }
+}
+// aqui começa a regra de exibir um men no mobile e outro no desktop
+// um tem a regra de collapse e outro não
+// #11177
+@media only screen and (min-width: $desktops){
+    .menu-mobile{
+        display: none!important;
+    }
+}
+
+@media only screen and (max-width: $desktops){
+    .bp-ddmenu{
+        background-color: transparent;
+        justify-content: center;
+        padding-left: 1rem;
+        display: grid;
+        select{
+            width: 214px;
+            background-position: 170px;
+        }
+        .blockPress-btn{
+            margin-left: 0px;
+        }
+    }
+    ul.options{
+        text-align: center;
+        padding: 0px;
+    }
+
+    .navbar{
+        padding: .5rem 1rem;
+    }
+    .border-menu-top{
+        border-top: 1px solid white;
+        padding: 15px 0px 0px;
+    }
+}
+
+.blockpress-nav-over{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    padding: 0 50px;
+    background-color: #272727f7;
+    min-height: 85px;
+    @include breakpoint(desktops){
+        padding: 0;
+        position: fixed;
+        top: 0;
+        max-height: 100%;
+        overflow: auto;   
+    }
+}
+
+
+.overlay {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 99999999999;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-size: 30px
+  }
+  
+  .overlay a:hover, .overlay a:focus {
+    color: $primaryColor;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  }

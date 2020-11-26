@@ -1,0 +1,135 @@
+$container-shadow: 0.5rem 0.5rem 2rem 0 rgba(black, 0.2);
+
+$gutter: 25px;
+$border-width: 2px;
+$dot-diameter: 12px;
+
+#timeline{
+    
+    .left{
+        background: url(../img/bg-fale-com-um-consultor.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 100%;
+
+        h2{
+            color: white;
+            text-align: center;
+            padding-top: 300px;
+
+            @include breakpoint(desktops){
+               padding-top: 50px;
+               padding-bottom: 30px;
+            }
+        }
+    }
+    .right{
+        max-height: 700px;
+        overflow-y: auto;
+        background: #f1f2f7;
+
+        h3{
+            color: $primaryColor;
+            font-size: 30px;
+        }
+    }
+
+
+    .timeline {
+        width:100%;
+        max-width:800px;
+        padding: 100px 25px;
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left:calc(33% + 15px); //$gutter/2
+            bottom: 0px;
+            width: $border-width;
+            background: #ddd;
+        }
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        } 
+    }
+
+    .entry {
+        clear: both;
+        text-align: left;
+        position: relative;
+        .title {
+            margin-bottom: .5em;
+            float: left;
+            width: 33%;
+            padding-right: $gutter;
+            position: relative;
+            &:before {
+                content: '';
+                position: absolute;
+                width: $dot-diameter;
+                height: $dot-diameter;
+                border: $border-width solid salmon;
+                background-color:#fff;
+                border-radius:100%;
+                top: 15%;
+                right: -14px;
+                z-index: 99;
+            }
+        }
+
+        h3, p{
+            text-align: right;
+        }
+    }
+
+    .body-card {
+        margin: 0 0 3em;
+        float: right;
+        width: 66%;
+        padding-left: $gutter;
+        p {
+            line-height: 1.4em;
+            &:first-child {
+                margin-top: 0;
+                font-weight: 400;
+            }
+        }
+        ul {
+            color:#aaa;
+            padding-left: 0;
+            list-style-type: none;
+            
+        }
+    }
+
+    /* Let's get this party started */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3); 
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: $primaryColor; 
+        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5); 
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: $primaryColor;; 
+    }
+    
+}
+    
+

@@ -1,0 +1,38 @@
+#pg-404{
+    background: url(../img/bg-sobre.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 130px 0;
+    @media (min-width: $desktops) {
+        padding: 250px 0;
+    }
+    h1{
+        text-align: center;
+        font-size: 150px;
+        margin-bottom: 65px;
+        @media (min-width: $tablets) {
+            margin-bottom: 45px;
+        }
+        @media (min-width: $desktops) {
+            font-size: 220px;
+            margin-bottom: 75px;
+        }
+    }
+    h2{
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 10px;
+        @media (min-width: $desktops) {
+            font-size: 50px;
+        }
+    }
+    p{
+        font-size: 18px;
+        text-align: center;
+        @media (min-width: $desktops) {
+            font-size: 26px;
+        }
+    }
+}

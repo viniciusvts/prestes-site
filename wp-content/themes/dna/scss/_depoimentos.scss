@@ -1,0 +1,44 @@
+#depoimentos{
+    width: 100%;
+    display: block;
+    padding: 5% 10%;
+
+    background: url(../img/bg-depoimentos.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    h3{
+        font-family: 'fakeserif', 'Lato', sans-serif;
+        font-size: 50px;
+        margin-bottom: 40px;
+    }
+
+    p.name, p.profession{
+        color: $ternaryColor;
+        font-style: italic;
+        margin: 0;
+    }
+
+    .owl-depoimentos{
+        margin: 90px 0;
+    }
+
+    .name{
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    img{
+        @include transition(0.2s all ease);
+        &:hover{
+            filter: brightness(110%);
+        }
+        height: auto;
+        max-width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+}

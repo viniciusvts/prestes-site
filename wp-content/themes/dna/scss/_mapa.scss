@@ -1,0 +1,64 @@
+#map{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: block;
+
+    .floater{
+        position: absolute;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: block;
+    }
+
+    h2{
+        background-color: $ternaryColor;
+        padding: 20px;
+        text-align: center;
+        color: white;
+    }
+
+    iframe{
+        display: block;
+    }
+}
+
+
+
+//structure
+#map-filter {
+    @include verticalAnimation(2s, 3s);
+    position: relative;
+    #search {
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        padding: 1%;
+        @include breakpoint(smartphones){
+            padding: 5%;
+        }
+    }
+    #iframe-map {
+        border: solid 1px black;
+    }
+    .blockPress-btn {
+        font-size: 14px;
+        padding: 0px;
+        margin-top: 0;
+        .bttn {
+            min-width: 160px;
+            padding-left: 0;
+        }
+    }
+    select{
+        border-radius: 0;
+        min-height: 39px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    iframe{
+        display: block;
+    }
+}

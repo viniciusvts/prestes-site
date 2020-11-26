@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
+//variables
+$baseColor: #000000;
+$primaryColor: #EF7C00;
+$secundaryColor: #8EB91E;
+$ternaryColor: #00a1ad;
+$quaternaryColor: #74F5FF;
+$quinternaryColor: #ffcc00;
+$grey-btn: #363535;
+
+//breakpoints
+
+$smartphones: 575.98px;
+$tablets: 767.98px;
+$desktops: 991.98px;
+$largeDesktops: 1199.98px;
+$hdDesktops: 1440.98px;
+$fullHdDesktops: 1919.98px;
+$desktops4k: 2999.98; //3840px;
+
+@import "mixins.scss";
+
+@font-face {
+  font-family: fakeserif;
+  src: local("../font/fake-serif.otf"),
+  local("../font/fake-serif.otf"),
+  url(../font/fake-serif.ttf);
+  font-weight: bold;
+  font-display: swap;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+h1{
+  font-size: 60px;
+}
+
+h2{
+  font-size: 50px;
+}
+
+h1, h2{
+  font-family: 'fakeserif', 'Lato', sans-serif;
+  line-height: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @include breakpoint(smartphones){
+    font-size: 50px;
+    line-height: 50px;
+  }
+}
+h1.single-imoveis{
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+}
+
+.font-lato{            
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 20px;
+  img{
+    height: 20px;
+  }
+}
+
+h2, h3{
+  text-align: center;
+}
+
+h4{
+  font-size: 18px;
+}
+
+h5{
+  font-size: 14px;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+input[type="submit"]{
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+
+  &:hover{
+    color: black;
+  }
+}
+
+.no-gutters {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.img-filter{
+  filter: brightness(65%);
+  z-index: -1;
+}
+
+.filete svg{
+  max-width: 200px;
+}
+
+//estilizando controldores default do bootstratp
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-color: black;
+  padding: 0;
+  border-radius: 50%;
+  border: 21px solid black;
+  @include mediaScreenMax( $smartphones ){
+    width: 40px;
+    height: 40px;
+    border: 10px solid black;
+  }
+}
+///remove ajax loader from contact form
+div.wpcf7 .ajax-loader {
+	display: none!important;
+}
+//remove :focus on button of contact form
+div.wpcf7 input.wpcf7-submit{
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@import "menu.scss";
+@import "button";
+@import "slider.scss";
+@import "empreendimentos.scss";
+@import "premios.scss";
+@import "simulacao.scss";
+@import "minha-casa-minha-vida.scss";
+@import "depoimentos.scss";
+@import "floater.scss";
+@import "mapa.scss";
+@import "sobre.scss";
+@import "timeline.scss";
+@import "galeria.scss";
+@import "localizacao.scss";
+@import "sidebar.scss";
+@import "fale-com-um-consultor.scss";
+@import "footer.scss";
+@import "blogpage.scss";
+@import "blogsidebar.scss";
+@import "blogsingle.scss";
+@import "relacionados";
+@import "video-area";
+@import "perguntas-frequentes";
+@import "banner-empreendimentos";
+@import "empreendimentos-filtro";
+@import "mapLeafletRequired";
+@import "simulador";
+@import "animacao";
+@import "search-in-blog";
+@import "pop-up";
+@import "floater-social";
+@import "locationSidebar";
+@import "passo-a-passo";
+@import "sec-ebook-mcmv";
+@import "pg-404";

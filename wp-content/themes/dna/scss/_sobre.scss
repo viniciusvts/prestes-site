@@ -1,0 +1,63 @@
+#about, #about-tab{
+    width: 100%;
+    display: block;
+    padding: 5% 10%;    
+}
+
+#about{
+    background: url(../img/bg-sobre.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    p{
+        font-size: 18px;
+    }
+
+    
+    table{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+        td{
+            padding: 10px 20px;
+            @include breakpoint(smartphones){
+                width: 100%;
+                padding: 10px 20px;
+                display: block;
+            }
+        }
+    }
+}
+
+#about-tab{    
+    background: url(../img/bg-fale-com-um-consultor.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    border-top:1px solid black; 
+    font-size: 18px;
+
+    .nav-item{
+        width: 25%;
+        background: white;
+        border: solid 0.5px grey;
+        text-align: center;
+        
+        .active{
+            background: $primaryColor;
+            color: white;
+            border-radius: 0;
+            height: 100%;
+        }
+        a{
+            color: $primaryColor;
+        }
+
+        @include breakpoint(smartphones){
+            width: 100%;
+        }
+    }
+}

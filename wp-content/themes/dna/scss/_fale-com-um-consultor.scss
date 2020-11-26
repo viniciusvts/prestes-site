@@ -1,0 +1,86 @@
+#consultant{
+    .wpcf7-validation-errors, .wpcf7-mail-sent-ok{
+        color: black;
+    }
+    
+    @include verticalAnimation();
+    
+    background: url(../img/bg-fale-com-um-consultor.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    color: white;
+
+    h3{
+        color: $baseColor;
+        margin-bottom: 40px;
+    }
+
+    svg{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 40px;
+        width: 200px;
+    }
+
+    span, .screen-reader-response{
+        color: red;
+    }
+
+    .form{
+        background: white;
+        border-radius: 4px;
+        padding: 40px;
+        max-width: 600px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        .blockPress-btn {
+            padding: 0;
+        }
+        @include breakpoint(smartphones){            
+            padding: 10px 10px 20px;            
+        }
+
+        form{
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            display: block;
+        }
+
+        label{
+            color: $primaryColor;
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], textarea, select{
+            background: #f1f2f7;
+            border: none;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px #dce0ea solid;
+            padding: 10px;
+            min-height: 40px;
+
+            &::placeholder{
+                color: #bbbfcb;
+                padding: 10px;
+            }
+
+            margin-bottom: 20px;
+        }
+
+        p{
+            color: black;
+        }
+        button{
+            border: none;
+        }
+    }
+
+    @include padding();
+}
+    

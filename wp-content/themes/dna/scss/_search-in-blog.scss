@@ -1,0 +1,15 @@
+form#search-in-blog {
+    margin-bottom: 50px;
+    input[type=text]#s-input {
+        border: 0px grey;
+        width: 100%;
+        border-bottom: 1px solid grey;
+        &:focus {
+            outline: -webkit-focus-ring-color auto 0px;
+            border-bottom: 1px solid grey;
+        }
+    }
+    .blockPress-btn {
+        padding: 10px 0;
+    }
+}

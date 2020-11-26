@@ -1,0 +1,193 @@
+.blockPress-btn {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+  #formSimulatorSubmit {
+    padding-top: 0;
+  }
+.bttn, .bttn-white{
+  text-decoration:none;
+  @include transition(0.2s all ease); 
+  float: left;
+
+  &:hover {
+    color: black;
+    z-index: 9;
+  }
+
+  &:focus {
+    color:black;
+    z-index: 9;
+  }
+}
+
+.bttn-white{
+  color: $primaryColor;
+  background: white;
+}
+
+.bttn::after {
+  display: block;
+  content: '';
+  background-image: url('../svg/cta-next.svg');
+  height: 38px;
+  width: 47px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  background-repeat: no-repeat;
+  }
+
+.bttn {
+  color:white;
+  background: $primaryColor;
+  text-transform:uppercase;
+  display:inline-block;
+  text-align:center;
+  min-width:200px;
+  height: 37px;
+  padding-top: 7px;
+  /* padding-bottom: 6px; */
+  padding-right: 60px;
+  padding-left: 15px;
+  position:relative;
+  &:before {
+    @include transition(0.2s all ease);
+    position:absolute;
+    top:0;
+    left:50%;
+    right:50%;
+    bottom:0;
+    opacity:0;
+    content:'';
+    background-color:$quinternaryColor;
+    z-index:-1;
+  }
+  &:hover {
+    &:before {
+      @include transition(0.2s all ease);
+      left:0;
+      right:0;
+      opacity:1;
+    }
+  }
+  
+  .bttn {
+    text-transform:uppercase;
+    display:inline-block;
+    text-align:center;
+    min-width:200px;
+    height: 37px;
+    padding-top: 6px;
+    padding-bottom: 6px; 
+    padding-right: 50px;
+    padding-left: 5px;
+    position:relative;
+    font-size: 14px;
+  }
+  &:focus {
+    &:before {
+      @include transition(0.2s all ease);
+      left:0;
+      right:0;
+      opacity:1;
+    }
+  }
+}
+//btn left
+
+.bttn-l, .bttn-l-white{
+  text-decoration:none;
+  @include transition(0.2s all ease); 
+  float: right;
+
+  &:hover {
+    color: black;
+    z-index: 9;
+  }
+
+  &:focus {
+    color:black;
+    z-index: 9;
+  }
+}
+
+.bttn-l {
+  color:white;
+  background: $primaryColor;
+}
+
+.bttn-l-white{
+  color: $primaryColor;
+  background: white;
+}
+
+.bttn-l::after {
+  display: block;
+  content: '';
+  background-image: url('../svg/cta-next.svg');
+  height: 37px;
+  width: 47px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+  }
+
+.bttn-l {
+  text-transform:uppercase;
+  display:inline-block;
+  text-align:center;
+  min-width:200px;
+  height: 37px;
+  padding-top: 7px;
+  // padding-bottom: 6px;
+  padding-right: 15px;
+  padding-left: 60px;
+  position:relative;
+  &:before {
+    @include transition(0.2s all ease);
+    position:absolute;
+    top:0;
+    left:50%;
+    right:50%;
+    bottom:0;
+    opacity:0;
+    content:'';
+    background-color:$quinternaryColor;
+    z-index:-1;
+  }
+  &:hover {
+    &:before {
+      @include transition(0.2s all ease);
+      left:0;
+      right:0;
+      opacity:1;
+    }
+  }
+  &:focus {
+    &:before {
+      @include transition(0.2s all ease);
+      left:0;
+      right:0;
+      opacity:1;
+    }
+  }
+}
+///quando em pequenas telas
+@media (max-width: 576px){
+  #formSimulator{
+    .bttn, .bttn-l{
+      min-width: 120px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .bttn::after, .bttn-l::after{
+      background-image:url(); 
+    }
+  }
+}

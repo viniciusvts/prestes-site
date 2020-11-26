@@ -1,0 +1,115 @@
+section#passo-a-passo {
+  background-image: linear-gradient(#ffff, #ffff, #EBE8E8);
+  padding-bottom: 20px;
+  // svg {
+  //   display: block;
+  //   margin: 20px auto 20px auto;
+  //   max-width: 250px;
+  // }
+  // .step {
+  //   margin-bottom: 10px;
+  //   margin-top: 10px;
+  //   padding: 0 60px;
+  //   text-align: center;
+  //   position: relative;
+  //   color: #747474;
+  //   svg {
+  //     position: absolute;
+  //     top: 6px;
+  //     left: 193px;
+  //     width: 185px;
+  //     @include breakpoint(smartphones){
+  //       display: none;
+  //   }
+  //   }
+  // }
+}
+
+section#passo-a-passo {
+  position: relative;
+  .step {
+    background-color: black;
+    margin: 2px;
+    min-height: 150px;
+    padding: 50px 18px 20px;
+    position: relative;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    @include breakpoint(smartphones){
+      padding: 50px 30px 20px;
+    }
+  }
+  .step-number {
+    position: absolute;
+    background-color: #006C74;
+    color: white;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-top: 12px;
+    border-radius: 50%;
+    margin: auto;
+    top: -20px;
+    z-index: 1;
+    left: 40%;
+  }
+  #step {
+    height: 250px;
+    padding-top: 20px;
+    overflow: hidden;
+  }
+  .customNextBtn-steps {
+    position: absolute;
+    top: 40%;
+    font-size: 40px;
+    font-weight: 700;
+    right: 20px;
+    svg {
+      width: 36px;
+      height: 20px;
+      margin-bottom: 6px;
+    }
+    cursor: pointer;
+    @include breakpoint(smartphones){
+      right: 2px;
+      background-color: #fff;
+      width: 38px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      padding-bottom: 38px;
+      z-index: 2;
+      font-size: 27px;
+      top: 45%;
+      right: 0px;
+    }
+  }
+  .customPrevBtn-steps {
+    position: absolute;
+    top: 40%;
+    font-size: 40px;
+    font-weight: 700;
+    left: 20px;
+    cursor: pointer;
+    svg {
+      width: 36px;
+      height: 20px;
+      margin-bottom: 6px;
+      transform: rotate(180deg);
+    }
+    @include breakpoint(smartphones){
+      right: 2px;
+      background-color: #fff;
+      width: 38px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      padding-bottom: 38px;
+      z-index: 2;
+      font-size: 27px;
+      top: 45%;
+      left: 0px;
+    }
+  }
+}

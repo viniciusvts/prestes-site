@@ -1,0 +1,270 @@
+#development{
+    background: url(../img/bg-empreendimentos.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    h3{        
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+    .blockpress-card{
+        img{
+            @include transition(0.2s all ease);
+            height: 250px;
+            object-fit: cover;
+        }
+        img:hover{
+            filter: brightness(110%);
+        }
+        .description{
+            background: $baseColor;
+            padding: 15px 0;
+            min-height: 145px;
+            @include breakpoint(smartphones){
+            }
+            h4,h5{
+                color: white;
+                text-transform: uppercase;
+                font-size: 14px;
+                text-align: left;
+            }
+            h4{
+                font-weight: bold;
+            }
+            h6{
+                color: $quaternaryColor;
+                font-size: 12px;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            svg, img{
+                width: 25px;
+                height: 25px;
+                fill: #fff;                
+                margin-right: auto;
+                margin-left: auto;
+                display: block;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+            @include breakpoint(smartphones){
+                text-align: center;
+            }
+        }
+        .attributes{
+            color: white;
+            p{
+                font-size: 10.5px;
+                text-align: center;
+            }
+        }
+        .detail{
+            svg{
+                width: 100%;
+                display: block;
+                margin-bottom: 40px;
+            }
+            img{
+                width: 100%;
+                display: block;
+                margin-bottom: 40px;
+                height: 3px;
+            }
+        }
+    }
+    width: 100%;
+    display: block;
+    padding: 5%;
+    //bp-carroussel
+    @media (min-width: 1600px){
+        .bp-col-xxl-3 {
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+    .bp-carroussel-row{
+        display: -ms-flexbox;
+        display: flex;
+        margin-right: -15px;
+        margin-left: -15px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+    }
+    .row-buttons{
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .blockPress-btn{
+        display: table;
+    }
+    .rectangle{
+        &-left, &-right{
+            width: 50px;
+            height: 45%;
+            bottom: 200px;
+            z-index: 9;
+            position: absolute;
+            svg{
+                width: 35px;
+            }
+        }
+        &-right{
+            right: 10px;
+        }
+        &-left{
+            left: 10px;
+            svg{
+                transform: rotate(180deg);
+                float: right;
+            }
+        }
+    }
+}
+#development-content{
+    p{
+        a{
+            color:#EF7C00;
+        }
+    }
+    svg{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 250px;
+    }
+    #aditional-info{
+        margin: 40px 0;
+        .box{
+            background: $baseColor;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 40px 0;
+            svg{
+                width: 70px;
+                height: 70px;
+                fill: white;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                border-radius: 28%;
+                padding: 15px;
+            }
+            p{
+                text-align: center;
+                color: white;
+                margin-bottom: 40px;
+            }
+        }
+        
+    }
+    @include padding();
+    button{
+        &.pegueSeuPresente, &.pegueSeuPresenteSidebar{
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 100%;
+            cursor: pointer;
+            border: 0;
+            background-color: transparent;
+            animation: pspShake .5s infinite;
+        }
+        &.pegueSeuPresente{
+            display: block;
+            @media (min-width: $desktops) {
+                display: none;
+            }
+        }
+        &.pegueSeuPresenteSidebar{
+            display: none;
+            @media (min-width: $desktops) {
+                display: block;
+            }
+            img{
+                width: 100%;
+            }
+        }
+        &:focus{
+            outline: none;
+        }
+    }
+}
+#status{
+    .loadbar{
+        padding: 0 20px;
+        display: flex;
+        width: 100%;
+        .load, .bar{
+            height: 20px;
+        }
+        .load{
+            background: $baseColor;        
+        }
+        .bar{
+            background: #eaebed;
+        }
+    }
+    p.left, p.right{
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+    p.left{
+        text-align: left;
+        padding-left: 10px;
+    }
+    p.right{
+        text-align: right;
+        padding-right: 10px;
+    }
+    svg{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 80px;
+        max-width: 250px;
+    }
+    @include padding();
+}
+
+.estabelecimentos{
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    &.row{
+        @include mediaScreenMin($desktops){
+            flex-wrap: nowrap!important;
+        }
+    }
+}
+.EPbuttom{
+    margin-top:55px;
+    border:0px;
+    cursor: pointer;
+    @media (max-width: $desktops){
+        display:none;
+    }
+    &[class^="carousel-control-"]{
+        margin-top: 55px;
+        border: 15px solid black;
+    }
+}
+@keyframes pspShake{
+    0%{
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(5deg);
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
