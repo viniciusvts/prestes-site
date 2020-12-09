@@ -1,6 +1,6 @@
 <section id="floater">
-  <div class="row no-gutters">
-    <div class="col-2 ml-auto">
+  <div class="row no-gutters px-4">
+    <div class="col ml-auto">
       <a id="ligue_agora" href="tel:42998450001">
         <div class="row no-gutters">
           <div class="icon">
@@ -13,7 +13,7 @@
         </div>
       </a>
     </div>
-    <div class="col-2">
+    <div class="col">
       <a id="atendimento_online" href="javascript:window.blipClient.toogleChat();">
         <div class="row no-gutters">
           <div class="icon">
@@ -26,7 +26,7 @@
         </div>
       </a>
     </div>
-    <div class="col-2">
+    <div class="col">
       <a id="atendimento_email" target="_blank" href="mailto:contato@prestes.com">
         <div class="row no-gutters">
           <div class="icon">
@@ -44,7 +44,7 @@
       $singleImoveis = get_the_title( );
       }
     ?>
-    <div class="col-2">
+    <div class="col">
       <a id="atendimento_whatsapp" 
       target="_blank" 
       href="https://api.whatsapp.com/send?phone=+5542998450001&l=pt_br&text=Ol%C3%A1,%20estava%20no%20site%20e%20quero%20saber%20mais%20detalhes<?php if(isset($singleImoveis)){echo" do empreendimento: ".$singleImoveis;} ?>.">
@@ -59,7 +59,7 @@
         </div>
       </a>
     </div>
-    <div class="col-2 mr-auto">
+    <div class="col mr-auto">
       <a id="atendimento_portal" target="_blank" href="https://prestes.construtordevendas.com.br/web/">
         <div class="row no-gutters">
           <div class="icon">
