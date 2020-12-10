@@ -100,7 +100,7 @@
         if ($_SERVER['REQUEST_URI'] != '/imoveis/'){
         ?>
         <div class="blockPress-btn">
-            <a href="<?php echo bloginfo("wpurl"); ?>/imoveis/" class="bttn">Clique e conheça</a>
+            <a href="<?php echo bloginfo("wpurl"); ?>/empreendimentos/" class="bttn">Clique e conheça</a>
         </div>
         <?php
         }
