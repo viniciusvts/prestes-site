@@ -30,6 +30,35 @@ if(isset($_POST["nome"])){
       ."<br>Converteu em: ".$convertido;
   $headers = array('Content-Type: text/html; charset=UTF-8');
   $wpmail = wp_mail( $to, $subject, $message, $headers );
+  // envio para o RD
+  $RDI = new Rdi_wp();
+  $getContact = $RDI->getContactByEmail($email);
+  // se há registro do contato removo as tag
+  if ($getContact){
+    // novas tag a serem inseridas, neste caso
+    $newtags = array(
+      "tags" => array()
+    );
+    $esdited = $RDI->editContact($getContact->uuid, $newtags);
+  }
+  // envio a conversão
+  $data = array(
+    'email' => $email,
+    'name' => $nome,
+    'cf_regiao' => $regiao,
+    'city' => $cidade,
+    'cf_renda' => $renda,
+    'cf_entrada' => $entrada,
+    'personal_phone' => $tel,
+    'cf_fgts' => $fgts,
+    'cf_empreendimentocliente' => $empreendimento,
+    'cf_origem' => $urlOrigem,
+    'traffic_source' => $_POST['traffic_source'],
+    'traffic_medium' => $_POST['traffic_medium'],
+    'traffic_campaign' => $_POST['traffic_campaign'],
+    'traffic_value' => $_POST['traffic_value'],
+  );
+  $statusRD = $RDI->sendConversionEvent('formSimulator', $data);
 }
 ?>
 <?php get_header(); ?>
