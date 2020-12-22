@@ -380,10 +380,81 @@ $idImovel = get_field('id_do_imovel')
 <section id="consultant">
   <h2>Fale com um consultor</h2>
   <?php echo file_get_contents("wp-content/themes/dna/svg/line-color.svg"); ?>
-      
-  <div class="form animar">
-      <?php echo do_shortcode('[contact-form-7 id="582" title="Fale com um consultor"]');?>
-  </div>
+  <form action="/agradecimento-fale-com-consultor/" method="POST">
+    <div class="form animar">
+      <h3>Preencha todos os dados para que um de nossos corretores possa entrar em contato</h3>
+      <label>
+        Seu nome*
+        <input type="text" name="name" id="name" required>
+      </label>
+      <label>
+        E-mail*
+        <input type="email" name="email" id="email" required>
+      </label>
+      <label>
+        Telefone*
+        <input type="text" name="telefone" id="telInput" required>
+      </label>
+      <input type="hidden" name="urlOrigem" value="<?php echo $_SERVER["REQUEST_URI"] ?>">
+      <input type="hidden" name="converteuEm" value="Fale com um consultor - empreendimento">
+      <input type="hidden" name="empreendimentocliente" value="<?php the_title() ?>">
+      <input type="hidden" name="idempreendimento" value="<?php echo get_field('id_do_imovel'); ?>">
+      <input type="hidden" name="falecomconsultorempreedimento" value="<?php echo $_SERVER["REQUEST_URI"] ?>">
+      <input type="hidden" name="traffic_source" id="traffic_source">
+      <input type="hidden" name="traffic_medium" id="traffic_medium">
+      <input type="hidden" name="traffic_campaign" id="traffic_campaign">
+      <input type="hidden" name="traffic_value" id="traffic_value">
+      <script>
+          /** https://www.w3schools.com/js/js_cookies.asp */
+          function getCookie(cname) {
+              let name = `${cname}=`;
+              let decodedCookie = decodeURIComponent(document.cookie);
+              let ca = decodedCookie.split(";");
+              for (let i = 0; i < ca.length; i++) {
+              let c = ca[i];
+              while (c.charAt(0) === " ") {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) === 0) {
+                  return c.substring(name.length, c.length);
+              }
+              }
+              return "";
+          }
+          /**
+          * Pega parametros passados pela uri
+          * @param {String} param - parâmetro que se quer pegar
+          * @author Vinicius de Santana
+          */
+          function getUriParam(param) {
+              var params = window.location.search.substr(1).split('&');
+              for (var i = 0; i < params.length; i++) {
+                  var par = params[i].split('=');
+                  if (par[0] == param) {
+                      return decodeURIComponent(par[1]);
+                  }
+              }
+              return '';
+          }
+          document.getElementById('traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
+          document.getElementById('traffic_medium').value = getUriParam('utm_medium')
+          document.getElementById('traffic_campaign').value = getUriParam('utm_campaign')
+          document.getElementById('traffic_value').value = getUriParam('utm_term')
+      </script>
+      <p>*Campos obrigatórios</p>
+      <hr>
+      <p>Fique tranquilo, suas informações estarão seguras conosco. Nós prometemos não utilizar para enviar quaisquer tipo de SPAM.</p>
+      <div class="container">
+        <div class="row">
+          <div class="blockPress-btn">
+            <div class="bttn">
+              <input type="submit" value="Agende uma conversa">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </section>
 
 <!-- Modal e Script do RD para apresentar o form-->
