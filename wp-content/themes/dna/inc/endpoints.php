@@ -29,6 +29,74 @@ function dnaapi_personalizeLPBaixouBook(){
   $statusRD = $RDI->sendConversionEvent('personalize-baixou-ebook', $data);
   return array('statusRD' => $statusRD);
 }
+/**
+ * Atende a requisição enviando para o rd a informação do site
+ * @author Vinicius de Santana
+ */
+function dnaapi_falecomconsultorempreedimento(){
+  $nome = $_POST["name"];
+  $email = $_POST["email"];
+  $tel = $_POST["telefone"];
+  $urlOrigem = $_POST["urlOrigem"];
+  $convertido = $_POST['converteuEm'];
+  $empreendimento = $_POST["empreendimentocliente"];
+  $idempreendimento = $_POST["idempreendimento"];
+
+  //send email
+  $to = "marketing@prestes.com";
+  $subject = $convertido;
+  $message = "Nome: ".$nome
+      ."<br>Email: ".$email
+      ."<br>Telefone: ".$tel
+      ."<br>Url de Origem: ".$urlOrigem
+      ."<br>Converteu em: ".$convertido
+      ."<br>Empreendimento de Interesse: ".$empreendimento
+      ."<br>Id do Empreendimento: ".$idempreendimento;
+  $headers = array('Content-Type: text/html; charset=UTF-8');
+  $wpmail = wp_mail( $to, $subject, $message, $headers );
+  // envio para o RD
+  $RDI = new Rdi_wp();
+  $getContact = $RDI->getContactByEmail($email);
+  // se há registro do contato removo as tag
+  if ($getContact){
+    // novas tag a serem inseridas, neste caso
+    $newtags = array(
+      "tags" => array()
+    );
+    $esdited = $RDI->editContact($getContact->uuid, $newtags);
+  }
+  // envio a conversão
+  $data = array(
+    'name' => $nome,
+    'email' => $email,
+    'personal_phone' => $tel,
+    'cf_origem' => $urlOrigem,
+    'cf_empreendimentocliente' => $empreendimento,
+    'cf_id_empreendimento' => $idempreendimento,
+    'traffic_source' => $_POST['traffic_source'],
+    'traffic_medium' => $_POST['traffic_medium'],
+    'traffic_campaign' => $_POST['traffic_campaign'],
+    'traffic_value' => $_POST['traffic_value'],
+  );
+  $statusRD = $RDI->sendConversionEvent($_POST["falecomconsultorempreedimento"], $data);
+  if (!$statusRD) {
+    return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
+      'status' => 502,
+      'statusRD' => $statusRD,
+      'statusMail' => $wpmail,
+    ));
+  }
+  $url = 'https://www.prestes.com/agradecimento/';
+  return array(
+    'code' => 'Requisição OK',
+    'message' => '',
+    'data' => array(
+      'url' => $url,
+      'statusRD' => $statusRD,
+      'statusMail' => $wpmail,
+    )
+  );
+}
 
 
 /**
@@ -77,6 +145,20 @@ function dnaapi_register_ccp(){
     array(
       'methods' => 'POST',
       'callback' => 'dnaapi_personalizeLPBaixouBook',
+      'description' => 'recebe as informações do form e envia para o RD',
+      'args' => array(
+        'email' => array(
+          'required' => true,
+        ),
+      )
+    )
+  );
+  //fale com consultor
+  register_rest_route('dna_theme/v1',
+    '/falecomconsultorempreedimento',
+    array(
+      'methods' => 'POST',
+      'callback' => 'dnaapi_falecomconsultorempreedimento',
       'description' => 'recebe as informações do form e envia para o RD',
       'args' => array(
         'email' => array(
