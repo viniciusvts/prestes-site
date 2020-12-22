@@ -60,7 +60,7 @@
       </a>
     </div>
     <div class="col mr-auto">
-      <a id="atendimento_portal" target="_blank" href="https://prestes.construtordevendas.com.br/web/">
+      <a id="atendimento_portal" target="_blank" href="https://prestesconstrutora-portalcliente.sienge.com.br/">
         <div class="row no-gutters">
           <div class="icon">
             <?php echo file_get_contents("wp-content/themes/dna/svg/house.svg"); ?>
