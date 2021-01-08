@@ -94,8 +94,8 @@ function next(){
             return;
         }
     }else if(page == 4){
-        if( document.getElementById("tel").value == ""){
-            alert("Digite um telefone");
+        if( document.getElementById("tel").value == "" || document.getElementById("tel").value.length < 14){
+            alert("Digite um telefone válido");
             return;
         }
     }else if( page == 5){

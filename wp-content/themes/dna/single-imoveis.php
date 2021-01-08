@@ -457,6 +457,11 @@ $idImovel = get_field('id_do_imovel')
     document.getElementById('traffic_value').value = getUriParam('utm_term')
     // envia o formulário
     document.getElementById('falecomconsultorempreedimento').addEventListener('submit',function(evt){
+      // valida telefone
+      if(evt.target.querySelector('#telInput').value.length < 14){
+          evt.preventDefault()
+          alert('Número de telefone incorreto')
+      }
       evt.preventDefault()
       const formData = new FormData(evt.target)
       const url = evt.target.action

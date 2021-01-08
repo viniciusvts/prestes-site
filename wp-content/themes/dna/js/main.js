@@ -748,6 +748,16 @@ function show_hide() {
       input.value = idImovel;
     }
   }
+  // valida input de telefone do formulário de /contato
+  var formContato = document.querySelector('#contatoform form')
+  if(formContato){
+    formContato.addEventListener('submit', function(evt){
+      if(formContato.querySelector("#telInput").value.length < 14){
+        alert("Digite um telefone válido")
+        evt.preventDefault()
+    }
+    })
+  }
   
 });
 
