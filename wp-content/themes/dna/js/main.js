@@ -403,6 +403,7 @@ function setasNoCarrossel(){
 /**
  *Máscaras ER 
  * http://wbruno.com.br/expressao-regular/mascara-campo-de-telefone-em-javascript-com-regex-nono-digito-telefones-sao-paulo/
+ * @deprecated
 */
 function mtel(v){
   v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
@@ -414,9 +415,23 @@ function mtel(v){
 /** 
  * Recebe o input que receberá a mascara
  * @example document.getElementById("telInput").onkeyup = execMascara;
+ * @deprecated
 */
 function execMascara(){
   this.value = mtel(this.value);
+}
+/**
+ * Executa máscara de telefone
+ * @author Vinicius de Santana
+ * @param {KeyboardEvent} evt 
+ */
+function execMascaraTel (evt) {
+  let v = evt.target.value;
+  v=v.replace(/\D/g,""); //Remove tudo o que não é dígito
+  v=v.replace(/^(\d{11})(\d*)/g,"$1"); // remove o excedente de 11 digitos
+  v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+  v=v.replace(/(\d)(\d{4})$/,"$1-$2"); //Coloca - depois dos 4 digitos após ()
+  evt.target.value = v;
 }
 
 function close_pop_up() {
@@ -724,7 +739,7 @@ function show_hide() {
   });
   var telInput = document.querySelectorAll("#telInput");
   for (var i = 0; i < telInput.length; i++) {
-    telInput[i].onkeyup = execMascara;
+    telInput[i].onkeyup = execMascaraTel;
   }
   // adiciona o id do empreendimento ao form, a variável esta sendo iniciada na página do empreendimento
   if (typeof idImovel != 'undefined'){
