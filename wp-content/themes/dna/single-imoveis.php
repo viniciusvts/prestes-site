@@ -451,10 +451,10 @@ $idImovel = get_field('id_do_imovel')
       }
       return '';
     }
-    document.getElementById('traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
-    document.getElementById('traffic_medium').value = getUriParam('utm_medium')
-    document.getElementById('traffic_campaign').value = getUriParam('utm_campaign')
-    document.getElementById('traffic_value').value = getUriParam('utm_term')
+    document.querySelector('form#falecomconsultorempreedimento #traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
+    document.querySelector('form#falecomconsultorempreedimento #traffic_medium').value = getUriParam('utm_medium')
+    document.querySelector('form#falecomconsultorempreedimento #traffic_campaign').value = getUriParam('utm_campaign')
+    document.querySelector('form#falecomconsultorempreedimento #traffic_value').value = getUriParam('utm_term')
     // envia o formulário
     document.getElementById('falecomconsultorempreedimento').addEventListener('submit',function(evt){
       // valida telefone
