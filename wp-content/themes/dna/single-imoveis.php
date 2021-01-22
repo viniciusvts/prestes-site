@@ -149,8 +149,11 @@ $idImovel = get_field('id_do_imovel')
         <?php
           }
         ?>
-
         <div id="localization">
+          <?php
+            $estabelecimentos = get_field('estabelecimentos');
+            if($estabelecimentos){
+          ?>
           <div class="header">
             <div class="container-fluid">
               <div class="row">
@@ -158,7 +161,6 @@ $idImovel = get_field('id_do_imovel')
                   <p>Estabelecimentos próximos</p>
                 </div>
                 <?php
-                    $estabelecimentos = get_field('estabelecimentos');
                     $size = count($estabelecimentos);
                     if ($size>4){
                     $col = "col-lg-10";
@@ -200,12 +202,12 @@ $idImovel = get_field('id_do_imovel')
             </div>
           </div>
           <?php
+            }
             if(get_field('mapa') != false): 
             the_field('mapa');
             endif;
           ?>
         </div>
-
       </div>
       <div class="col-12 col-lg-3">
         <div class="card">
