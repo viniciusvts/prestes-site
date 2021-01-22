@@ -103,6 +103,14 @@ if($hasAll){
             <?php
             }
             ?>
+            <li class="nav-item">
+                <a class="nav-link"
+                id="pills-contact-tab"
+                target="_blank"
+                href="https://www.prestes.com/wp-content/uploads/2021/01/codigo-de-conduta.pdf" >
+                    Código de Conduta
+                </a>
+            </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <?php
