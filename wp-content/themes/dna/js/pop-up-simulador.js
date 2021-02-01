@@ -99,6 +99,13 @@ function next(){
             return;
         }
     }else if( page == 5){
+        //verifica se houve o evento do google captcha
+        const form = document.querySelector('#formSimulator');
+        const gcok = form.getAttribute('data-gcok');
+        if( !gcok ) {
+            alert("Preencha o desafio");
+            return;
+        }
         document.forms["formSimulator"].submit();
     }
     if(page<5){
