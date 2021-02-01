@@ -12,7 +12,7 @@ $termsCity = get_terms([
 <div id="pop-up-simulator">
     <span onclick="close_pop_up()" class="close-pop-up">x</span>
     <form method="POST"
-    action="<?php echo bloginfo( "url" ) ?>/agradecimento-simulacao-teste/"
+    action="<?php echo bloginfo( "url" ) ?>/agradecimento-simulacao/"
     class="bp-simulador container"
     id="formSimulator">
         <div class="title row">
