@@ -1,7 +1,14 @@
 <?php /* Template Name: Basic */ ?>
 <?php
 /* vem de dna/page-simulador.php */
-if(isset($_POST["nome"])){
+  // verifica google recaptcha
+  if(isset($_POST['g-recaptcha-response'])){
+    $respCaptcha = gCaptchaVerify('6LdEi0UaAAAAADTwU3fYJHMQpBXKXz3sIxRScpOs',
+      $_POST['g-recaptcha-response'],
+      $_SERVER['REMOTE_ADDR']
+    );
+  }
+if(isset($_POST["nome"]) && $respCaptcha->success){
   $regiao = $_POST["regiao"];
   $empreendimento = $_POST["empreendimentocliente"];
   $cidade = $_POST["cidade"];

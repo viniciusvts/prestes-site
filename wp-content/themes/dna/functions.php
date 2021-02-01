@@ -193,6 +193,7 @@
     include("inc/widgets.php");
     include("inc/customizeLoginScreen.php");
     include("inc/customizer.php");
+    include("inc/gCaptchaVerify.php");
     include("inc/disableEndpoints.php");
     include("inc/endpoints.php");
 ?>
