@@ -119,6 +119,76 @@ function dnaapi_feirao2020(){
   wp_redirect($url);
   exit;
 }
+/**
+ * Atende a requisição enviando para o rd a informação do site
+ * @author Vinicius de Santana
+ */
+function dnaapi_formcontato(){
+  $nome = $_POST["name"];
+  $email = $_POST["email"];
+  $tel = $_POST["telefone"];
+  $cidade = $_POST["cidade"];
+  $setor = $_POST["setor"];
+  $urlOrigem = $_POST["urlOrigem"];
+  $mensagem = $_POST["mensagem"];
+  $identificador = $_POST["identificador"];
+
+  //send email
+  $to = "marketing@prestes.com";
+  $subject = 'Formulário de contato em Preste.com';
+  $message = "Nome: ".$nome
+      ."<br>Email: ".$email
+      ."<br>Telefone: ".$tel
+      ."<br>Cidade: ".$cidade
+      ."<br>Setor: ".$setor
+      ."<br>Url de Origem: ".$urlOrigem
+      ."<br>Mensagem: ".$mensagem;
+  $headers = array('Content-Type: text/html; charset=UTF-8');
+  $wpmail = wp_mail( $to, $subject, $message, $headers );
+  // envio para o RD
+  $RDI = new Rdi_wp();
+  $getContact = $RDI->getContactByEmail($email);
+  // se há registro do contato removo as tag
+  if ($getContact){
+    // novas tag a serem inseridas, neste caso
+    $newtags = array(
+      "tags" => array()
+    );
+    $esdited = $RDI->editContact($getContact->uuid, $newtags);
+  }
+  // envio a conversão
+  $data = array(
+    'name' => $nome,
+    'email' => $email,
+    'personal_phone' => $tel,
+    'cf_origem' => $urlOrigem,
+    'cf_tipo_contato' => $setor, //cf_tipo_atendimento
+    'city' => $cidade,
+    'cf_mensagem' => $mensagem,
+    'traffic_source' => $_POST['traffic_source'],
+    'traffic_medium' => $_POST['traffic_medium'],
+    'traffic_campaign' => $_POST['traffic_campaign'],
+    'traffic_value' => $_POST['traffic_value'],
+  );
+  $statusRD = $RDI->sendConversionEvent($identificador, $data);
+  if (!$statusRD) {
+    return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
+      'status' => 502,
+      'statusRD' => $statusRD,
+      'statusMail' => $wpmail,
+    ));
+  }
+  $url = 'https://www.prestes.com/sucesso/';
+  return array(
+    'code' => 'Requisição OK',
+    'message' => '',
+    'data' => array(
+      'url' => $url,
+      'statusRD' => $statusRD,
+      'statusMail' => $wpmail,
+    )
+  );
+}
 
 /**
  * Função registra os endpoints
@@ -159,6 +229,20 @@ function dnaapi_register_ccp(){
     array(
       'methods' => 'POST',
       'callback' => 'dnaapi_falecomconsultorempreedimento',
+      'description' => 'recebe as informações do form e envia para o RD',
+      'args' => array(
+        'email' => array(
+          'required' => true,
+        ),
+      )
+    )
+  );
+  //cntato form
+  register_rest_route('dna_theme/v1',
+    '/formcontato',
+    array(
+      'methods' => 'POST',
+      'callback' => 'dnaapi_formcontato',
       'description' => 'recebe as informações do form e envia para o RD',
       'args' => array(
         'email' => array(
