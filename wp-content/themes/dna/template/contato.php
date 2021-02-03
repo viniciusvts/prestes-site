@@ -129,7 +129,7 @@
                 })
                 .then(json => {
                     if(json.data.url){
-                        // location.href = json.data.url
+                        location.href = json.data.url
                     } else {
                         alert("Houve um erro, tente novamente mais tarde.")
                     }
