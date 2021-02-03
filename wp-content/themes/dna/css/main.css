@@ -1998,6 +1998,9 @@ html {
   color: #bbbfcb;
   padding: 10px;
 }
+#consultant .form input[type=checkbox] {
+  margin: 10px 10px 30px 0;
+}
 #consultant .form p {
   color: black;
 }
