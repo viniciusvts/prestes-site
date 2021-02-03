@@ -19,6 +19,8 @@ if(isset($_POST["nome"]) && $respCaptcha->success){
   $tel = $_POST["tel"];
   $fgts = $_POST["fgts"];
   $convertido = $_POST['converteuEm'];
+  /** se consentiu com o envio de comunicações */
+  $communicationsconsent = isset($_POST["communicationsconsent"]);
   //$cash = $_POST["cash"];
   $urlOrigem = $_POST["urlOrigem"];
   //send email
@@ -65,6 +67,17 @@ if(isset($_POST["nome"]) && $respCaptcha->success){
     'traffic_campaign' => $_POST['traffic_campaign'],
     'traffic_value' => $_POST['traffic_value'],
   );
+  // se consentiu com o envio de informações
+  if ($communicationsconsent){
+    $legal_bases = array(
+      array(
+        "category" => "communications",
+        "type" => "consent",
+        "status" => "granted"
+      ),
+    );
+    $data['legal_bases'] = $legal_bases;
+  }
   $statusRD = $RDI->sendConversionEvent('formSimulator', $data);
 }
 ?>

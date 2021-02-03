@@ -188,6 +188,25 @@ $termsCity = get_terms([
                         </div>
                     </div>
                     <div class="col-12">
+                        <div class="pageshow-title row">
+                            <h4>Usará o seu FGTS?</h4>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="pageshow-choice row">
+                            <div class="radio-group">
+                                <div class="radio-choice">
+                                    <input type="radio" name="fgts" required id="fgts-y" value="sim" class="radiobuttom">
+                                    <label for="fgts-y">Sim</label>
+                                </div>
+                                <div class="radio-choice">
+                                    <input type="radio" required name="fgts" id="fgts-n" value="nao" class="radiobuttom">
+                                    <label for="fgts-n">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
                         <div class=" pageshow-btns row">
                             <div class="col-6">
                                 <div class="blockPress-btn">
@@ -211,21 +230,13 @@ $termsCity = get_terms([
                 <div class="row">
                     <div class="col-12">
                         <div class="pageshow-title row">
-                            <h4>Usará o seu FGTS?</h4>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="pageshow-choice row">
-                            <div class="radio-group">
-                                <div class="radio-choice">
-                                    <input type="radio" name="fgts" required id="fgts-y" value="sim" class="radiobuttom">
-                                    <label for="fgts-y">Sim</label>
-                                </div>
-                                <div class="radio-choice">
-                                    <input type="radio" required name="fgts" id="fgts-n" value="nao" class="radiobuttom">
-                                    <label for="fgts-n">Não</label>
-                                </div>
-                            </div>
+                            <label class="mx-auto">
+                                <input type="checkbox"
+                                name="communicationsconsent"
+                                id="communicationsconsent"
+                                checked>
+                                Eu concordo em receber comunicações.
+                            </label>
                         </div>
                     </div>
                     <div class="col-12">

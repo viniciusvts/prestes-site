@@ -98,6 +98,10 @@ function next(){
             alert("Digite um telefone válido");
             return;
         }
+        if( document.querySelectorAll('[name="fgts"]:checked').length == 0){
+            alert("Selecione se usará FGTS");
+            return;
+        }
     }else if( page == 5){
         //verifica se houve o evento do google captcha
         const form = document.querySelector('#formSimulator');
