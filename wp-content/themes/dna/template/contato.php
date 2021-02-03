@@ -52,6 +52,13 @@
                     <textarea name="mensagem" cols="40" rows="10" ></textarea>
                 </span>
             </label>
+            <label class="mx-auto">
+                <input type="checkbox"
+                name="communicationsconsent"
+                id="communicationsconsent"
+                checked>
+                Eu concordo em receber comunicações.
+            </label>
             <p>*Campos obrigatórios</p>
             <hr>
             <p>Fique tranquilo, suas informações estarão seguras conosco. Nós prometemos não utilizar para enviar quaisquer tipo de SPAM.</p>
