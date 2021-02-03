@@ -398,6 +398,13 @@ $idImovel = get_field('id_do_imovel')
         Telefone*
         <input type="text" name="telefone" id="telInput" required>
       </label>
+      <label>
+        <input type="checkbox"
+        name="communicationsconsent"
+        id="communicationsconsent"
+        checked>
+        Eu concordo em receber comunicações.
+      </label>
       <input type="hidden" name="urlOrigem" value="<?php echo $_SERVER["REQUEST_URI"] ?>">
       <input type="hidden" name="converteuEm" value="Fale com um consultor - empreendimento">
       <input type="hidden" name="empreendimentocliente" value="<?php the_title() ?>">

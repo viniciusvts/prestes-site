@@ -41,6 +41,8 @@ function dnaapi_falecomconsultorempreedimento(){
   $convertido = $_POST['converteuEm'];
   $empreendimento = $_POST["empreendimentocliente"];
   $idempreendimento = $_POST["idempreendimento"];
+  /** se consentiu com o envio de comunicações */
+  $communicationsconsent = isset($_POST["communicationsconsent"]);
 
   //send email
   $to = "marketing@prestes.com";
@@ -78,8 +80,25 @@ function dnaapi_falecomconsultorempreedimento(){
     'traffic_campaign' => $_POST['traffic_campaign'],
     'traffic_value' => $_POST['traffic_value'],
   );
+  // se consentiu com o envio de informações
+  if ($communicationsconsent){
+    $legal_bases = array(
+      array(
+        "category" => "communications",
+        "type" => "consent",
+        "status" => "granted"
+      ),
+    );
+    $data['legal_bases'] = $legal_bases;
+  }
   $statusRD = $RDI->sendConversionEvent($_POST["falecomconsultorempreedimento"], $data);
-  if (!$statusRD) {
+  // foi enviado ok? então vejo se consentiu o envio de informações
+  if ($statusRD) {
+    // Se não tenho o user, busco-o 
+    if (!$getContact){
+      $getContact = $RDI->getContactByEmail($email);
+    }
+  } else {
     return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
       'status' => 502,
       'statusRD' => $statusRD,
