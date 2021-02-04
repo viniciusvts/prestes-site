@@ -49,6 +49,24 @@
               $email = get_theme_mod( 'dnaTheme_setting_contatoEmail');
               $end = get_theme_mod( 'dnaTheme_setting_contatoEnd');
               $city = get_theme_mod( 'dnaTheme_setting_contatoCity');
+              /* job #17676: se está na taxonomia cidade,
+              mostra o telefone da cidade correspondente se não,
+              mostra a opção setada pelo usuário em personalizar */
+              $thisTax = get_queried_object()->slug;
+              if(is_tax('cidade')){
+                $query = new WP_Query(array('post_type' => 'central'));
+                $centralDeVendas = $query->posts;
+                // var_dump($centralDeVendas);
+                foreach ($centralDeVendas as $tax) {
+                  if($tax->post_name == $thisTax){
+                    $tel = get_field('tel', $tax->ID);
+                    $telJustNumber = preg_replace("/[^0-9]/", "", $tel);
+                    $email = get_field('email', $tax->ID);
+                    $end = get_field('ends', $tax->ID)[0]['end'];
+                    $city = get_field('cidade', $tax->ID);
+                  }
+                }
+              }
               ?>
               <a id="cdv-tel-a" href="tel:<?php echo($telJustNumber); ?>">
                 <li id="cdv-tel"><?php echo($tel); ?></li>
