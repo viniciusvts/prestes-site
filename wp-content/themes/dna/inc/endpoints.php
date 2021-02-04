@@ -223,6 +223,72 @@ function dnaapi_formcontato(){
 }
 
 /**
+ * Atende a requisição enviando para o rd a informação do site
+ * @author Vinicius de Santana
+ */
+function dnaapi_falecomconsultor(){
+  $nome = $_POST["name"];
+  $email = $_POST["email"];
+  $tel = $_POST["telefone"];
+  $city = $_POST["city"];
+  $urlOrigem = $_POST["urlOrigem"];
+  // define identificador
+  $identificador = $urlOrigem == "/" ? "/"."home/" : $urlOrigem;
+  /** se consentiu com o envio de comunicações */
+  $communicationsconsent = isset($_POST["communicationsconsent"]);
+
+  //send email
+  $to = "marketing@prestes.com";
+  $subject = 'Formulário de contato em Preste.com';
+  $message = "Nome: ".$nome
+      ."<br>Email: ".$email
+      ."<br>Telefone: ".$tel
+      ."<br>Cidade: ".$city
+      ."<br>Url de Origem: ".$urlOrigem;
+  $headers = array('Content-Type: text/html; charset=UTF-8');
+  $wpmail = wp_mail( $to, $subject, $message, $headers );
+  // envio para o RD
+  $RDI = new Rdi_wp();
+  $getContact = $RDI->getContactByEmail($email);
+  // se há registro do contato removo as tag
+  if ($getContact){
+    // novas tag a serem inseridas, neste caso
+    $newtags = array(
+      "tags" => array()
+    );
+    $esdited = $RDI->editContact($getContact->uuid, $newtags);
+  }
+  // envio a conversão
+  $data = array(
+    'name' => $nome,
+    'email' => $email,
+    'personal_phone' => $tel,
+    'city' => $city,
+    'cf_origem' => $urlOrigem,
+    'traffic_source' => $_POST['traffic_source'],
+    'traffic_medium' => $_POST['traffic_medium'],
+    'traffic_campaign' => $_POST['traffic_campaign'],
+    'traffic_value' => $_POST['traffic_value'],
+  );
+  // se consentiu com o envio de informações
+  if ($communicationsconsent){
+    $legal_bases = array(
+      array(
+        "category" => "communications",
+        "type" => "consent",
+        "status" => "granted"
+      ),
+    );
+    $data['legal_bases'] = $legal_bases;
+  }
+  $statusRD = $RDI->sendConversionEvent($identificador, $data);
+  $url ='https://www.prestes.com/agradecimento/';
+  //vai para o url
+  wp_redirect($url);
+  exit;
+}
+
+/**
  * Função registra os endpoints
  * @author Vinicius de Santana
  */
@@ -289,6 +355,20 @@ function dnaapi_register_ccp(){
     array(
       'methods' => 'POST',
       'callback' => 'dnaapi_feirao2020',
+      'description' => 'recebe as informações do form e envia um email notificando o adm do site',
+      'args' => array(
+        'email' => array(
+          'required' => true,
+        ),
+      )
+    )
+  );
+  // falecomconsultor 2020
+  register_rest_route('dna_theme/v1',
+    '/falecomconsultor',
+    array(
+      'methods' => 'POST',
+      'callback' => 'dnaapi_falecomconsultor',
       'description' => 'recebe as informações do form e envia um email notificando o adm do site',
       'args' => array(
         'email' => array(
