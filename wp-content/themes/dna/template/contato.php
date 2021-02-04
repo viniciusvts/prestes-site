@@ -105,10 +105,12 @@
             }
             return '';
             }
-            document.getElementById('traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
-            document.getElementById('traffic_medium').value = getUriParam('utm_medium')
-            document.getElementById('traffic_campaign').value = getUriParam('utm_campaign')
-            document.getElementById('traffic_value').value = getUriParam('utm_term')
+            window.addEventListener('load', function(){
+                document.getElementById('traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src');
+                document.getElementById('traffic_medium').value = getUriParam('utm_medium');
+                document.getElementById('traffic_campaign').value = getUriParam('utm_campaign');
+                document.getElementById('traffic_value').value = getUriParam('utm_term');
+            });
             // envia o formulário
             var formContato = document.getElementById('contato');
             formContato.addEventListener('submit',function(evt){
