@@ -44,8 +44,6 @@
             </a>
             <ul>
               <?php 
-              /* caso mudar os padrões, verificar no main.js (função:setCentralDeVendasNoFooter)
-              os padrões tbm, para não serem alterados por outros */ 
               $tel = get_theme_mod( 'dnaTheme_setting_contatoTel');
               $telJustNumber = preg_replace("/[^0-9]/", "", $tel);
               $email = get_theme_mod( 'dnaTheme_setting_contatoEmail');
