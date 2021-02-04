@@ -157,12 +157,12 @@ function setCentralDeVendasNoFooter(tel, email, end, city){
   var cdvCity = document.getElementById("cdv-cidade");
   var cdvEmailA = document.getElementById("cdv-email-a");
   var cdvTelA = document.getElementById("cdv-tel-a");
-  cdvTel.innerHTML = tel?tel:"";
-  cdvEmail.innerHTML = email?email:"";
-  cdvEnd.innerHTML = end?end:"";
-  cdvCity.innerHTML = city?city:"";
+  cdvTel.innerHTML = "Fone: " + tel?tel:"(42) 3122-6100";
+  cdvEmail.innerHTML = email?email:"contato@prestes.com";
+  cdvEnd.innerHTML = end?end:"Avenida Dr. Colares, 215";
+  cdvCity.innerHTML = city?city:"Ponta Grossa";
   var hrefEmail = email?email:"contato@prestes.com.br";
-  var hrefTel = tel?tel:"4231226100";
+  var hrefTel = tel?tel.replace(/\D/g,""):"4231226100";
   cdvEmailA.setAttribute("href", "mailto:" + hrefEmail);
   cdvTelA.setAttribute("href", "tel:"+ hrefTel);
 }

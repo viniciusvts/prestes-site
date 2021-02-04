@@ -44,6 +44,8 @@
             </a>
             <ul>
               <?php 
+              /* caso mudar os padrões, verificar no main.js (função:setCentralDeVendasNoFooter)
+              os padrões tbm, para não serem alterados por outros */ 
               $tel = get_theme_mod( 'dnaTheme_setting_contatoTel');
               $telJustNumber = preg_replace("/[^0-9]/", "", $tel);
               $email = get_theme_mod( 'dnaTheme_setting_contatoEmail');
@@ -69,11 +71,11 @@
               $cel = " (42) 99865-0084";
               $celJustNumber = preg_replace("/[^0-9]/", "", $cel);
               ?>
-              <a id="cdv-tel-a" href="tel:<?php echo($telJustNumber); ?>">
-                <li id="cdv-tel">Fone: <?php echo($tel); ?> (fixo)</li>
+              <a href="tel:<?php echo($telJustNumber); ?>">
+                <li>Fone: <?php echo($tel); ?> (fixo)</li>
               </a>
-              <a id="cdv-tel-a" target="_blank" href="https://api.whatsapp.com/send?phone=5542998650084">
-                <li id="cdv-tel">Celular: <?php echo($cel); ?></li>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=5542998650084">
+                <li>Celular: <?php echo($cel); ?></li>
               </a>
             </ul>        
             
