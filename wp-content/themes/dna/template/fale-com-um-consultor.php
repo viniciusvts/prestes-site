@@ -28,9 +28,12 @@
                 <span class="setor">
                     <select name="city" id="city" required>
                         <option value="Apucarana">Apucarana</option>
+                        <option value="Cambé">Cambé</option>
                         <option value="Castro">Castro</option>
+                        <option value="Curitiba">Curitiba</option>
                         <option value="Guarapuava">Guarapuava</option>
                         <option value="Londrina">Londrina</option>
+                        <option value="Maringá">Maringá</option>
                         <option value="Ponta Grossa">Ponta Grossa</option>
                         <option value="Tibagi">Tibagi</option>
                     </select>
