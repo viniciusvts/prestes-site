@@ -50,22 +50,35 @@
               $end = get_theme_mod( 'dnaTheme_setting_contatoEnd');
               $city = get_theme_mod( 'dnaTheme_setting_contatoCity');
               /* job #17676: se está na taxonomia cidade,
-              mostra o telefone da cidade correspondente se não,
-              mostra a opção setada pelo usuário em personalizar */
-              $thisTax = get_queried_object()->slug;
+              mostra o telefone da cidade correspondente
+              se está no empreendimento, pega a cidade do empreendimento
+              e mostra o telefone de lá
+              se nenhuma das anteriores mostra a opção setada pelo usuário em personalizar
+              Lembrando que se usuário estiver em uma cidade conhecida, o javascript vai sobrescrever tudo*/
               if(is_tax('cidade')){
-                $query = new WP_Query(array('post_type' => 'central'));
+                $taxSlug = get_queried_object()->slug;
+                
+              } else if(is_singular('imoveis')) {
+                $postID = get_queried_object()->ID;
+                $taxSlug = wp_get_post_terms($postID, 'cidade')[0]->slug;
+              }
+              // se definiu o slug da taxonomia
+              if(isset($taxSlug)){
+                $query = new WP_Query(
+                  array(
+                    'post_type' => 'central',
+                    'name' => $taxSlug
+                  )
+                );
                 $centralDeVendas = $query->posts;
-                // var_dump($centralDeVendas);
-                foreach ($centralDeVendas as $tax) {
-                  if($tax->post_name == $thisTax){
-                    $tel = get_field('tel', $tax->ID);
-                    $telJustNumber = preg_replace("/[^0-9]/", "", $tel);
-                    $email = get_field('email', $tax->ID);
-                    $end = get_field('ends', $tax->ID)[0]['end'];
-                    $city = get_field('cidade', $tax->ID);
-                  }
-                }
+              }
+              // se encontrou uma central de vendas
+              if(isset($centralDeVendas[0])){
+                $tel = get_field('tel', $centralDeVendas[0]->ID);
+                $telJustNumber = preg_replace("/[^0-9]/", "", $tel);
+                $email = get_field('email', $centralDeVendas[0]->ID);
+                $end = get_field('ends', $centralDeVendas[0]->ID)[0]['end'];
+                $city = get_field('cidade', $centralDeVendas[0]->ID);
               }
               ?>
               <a id="cdv-tel-a" href="tel:<?php echo($telJustNumber); ?>">
