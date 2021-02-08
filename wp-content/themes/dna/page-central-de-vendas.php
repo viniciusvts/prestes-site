@@ -28,9 +28,11 @@
   <div class="col-12">
     <div class="row">
       <?php
-        $centraisAtendimento = new WP_Query(array('post_type' => 'central',
-            'orderby' => 'date',
-            'order' => 'ASC',
+        $centraisAtendimento = new WP_Query(array(
+          'post_type' => 'central',
+          'orderby' => 'date',
+          'order' => 'ASC',
+          'posts_per_page' => -1,
         ));
         if($centraisAtendimento->have_posts(  )){
           $loop = 0;
