@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-3 animar">
             <a href="<?php bloginfo('url'); ?>">
-              <img src="<?php bloginfo('template_url');?>/img/icon.png">
+              <img src="<?php bloginfo('template_url');?>/img/icon.png" alt="icone da prestes">
             </a>
             <!--<p>Lorem ipsum dolor sit amet, elitr tincidunt forensibus vim ea, ei pro autem malis habemus. Diam appetere democritum sed ea, his cu noster aeterno, possit iriure reprehendunt pri no. Ea modo iudico iriure per, porro nostro convenire id pri. An ius fierent gubergren disputando, at pro quod ipsum legere.</p>-->     
             <div class="social">

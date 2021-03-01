@@ -32,10 +32,10 @@ chr_setPostViews( get_the_ID() );
             <div class="col-md-6">
                 <div class="left">     
                     <div class="floater">
-                        <img src="<?php bloginfo('template_url');?>/img/minha-casa-minha-vida.jpg"> 
+                        <img src="<?php bloginfo('template_url');?>/img/minha-casa-minha-vida.jpg" alt="minha casa minha vida"> 
                     </div>                
                     <div class="gradient"></div>
-                    <img src="<?php bloginfo('template_url');?>/img/bgimg.jpg" class="image">
+                    <img src="<?php bloginfo('template_url');?>/img/bgimg.jpg" class="image" alt="imagem de background">
                 </div>
             </div> 
             <div class="col-md-6">
@@ -79,7 +79,7 @@ chr_setPostViews( get_the_ID() );
             <div class="col-sm-12 col-md-6">
                 <p id="title-sec">Preencha o formulário ao lado e receba <span>gratuitamente o nosso eBook!</span></p>
                 <p id="img-ebook">
-                <img src="<?php bloginfo('template_url');?>/img/ebook.png"> 
+                <img src="<?php bloginfo('template_url');?>/img/ebook.png" alt="ebook imagem"> 
                 </p>
             </div>
             <div class="col-sm-12 col-md-6">

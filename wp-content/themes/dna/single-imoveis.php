@@ -85,7 +85,9 @@ $idImovel = get_field('id_do_imovel')
       $taxFinanciamento= strtolower($taxs['financiamento']);
       if( strpos( $taxFinanciamento,"minha vida" ) ){
     ?>
-    <img src="<?php echo get_template_directory_uri()?>/img/minha-casa-minha-vida-horizontal.jpg" alt="" class="mcmvImgSingle">
+    <img src="<?php echo get_template_directory_uri()?>/img/minha-casa-minha-vida-horizontal.jpg"
+    alt="minha casa minha vida horizontal"
+    class="mcmvImgSingle">
     <?php
     }
       }

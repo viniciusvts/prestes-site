@@ -12,7 +12,9 @@
             <div class="item">
                 <div class="row">            
                     <div class="col-md-3">
-                        <img  src="<?php the_post_thumbnail_url( 'thumbnail' ); ?>" class="circle rounded-circle" alt="">
+                        <img  src="<?php the_post_thumbnail_url( 'thumbnail' ); ?>"
+                        class="circle rounded-circle"
+                        alt="carrossel thumbnail">
                     </div>
                     <div class="col-md-9">
                         <p><?php the_content(); ?></p>

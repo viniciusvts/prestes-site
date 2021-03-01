@@ -8,7 +8,9 @@
                 <h1 class="font-lato"><?php the_title(); ?></h1>
                 <div class="breadcrumbs"><?php wp_custom_breadcrumbs() ?></div>
                 </div>
-                <img class="img-fluid w-100 img-filter" src="<?php echo(get_theme_mod( 'dnaTheme_setting_ImgHeadSearch')); ?>">
+                <img class="img-fluid w-100 img-filter"
+                src="<?php echo(get_theme_mod( 'dnaTheme_setting_ImgHeadSearch')); ?>"
+                alt="head da página search">
             </div>      
             </div>
         </div>

@@ -33,7 +33,9 @@
                 <a href="<?php the_permalink(); ?>">
                     <div class="item">
                         <div class="blockpress-card">
-                            <img  src="<?php the_post_thumbnail_url( 'medium' ); ?>" class="d-block w-100 wp-post-image" alt="">
+                            <img  src="<?php the_post_thumbnail_url( 'medium' ); ?>"
+                            class="d-block w-100 wp-post-image"
+                            alt="thumbnail empreedimentos">
                             <div class="description">
                                 <div class="container-fluid">
                                     <div class="row no-gutters">
@@ -78,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="detail">
-                                <img src="<?php echo(get_template_directory_uri()); ?>/svg/filete-card.svg" alt="">
+                                <img src="<?php echo(get_template_directory_uri()); ?>/svg/filete-card.svg" alt="fillete prestes">
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,9 @@
                         <img src="<?php bloginfo('template_url');?>/img/minha-casa-minha-vida.jpg"> 
                     </div>                
                     <div class="gradient"></div>
-                    <img src="<?php bloginfo('template_url');?>/img/bg-minha-casa-minha-vida.jpg" class="image">
+                    <img src="<?php bloginfo('template_url');?>/img/bg-minha-casa-minha-vida.jpg"
+                    class="image"
+                    alt="bg minha casa minha vida">
                 </div>
             </div> 
             <div class="col-md-6">

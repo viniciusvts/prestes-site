@@ -13,7 +13,7 @@
                             <?php if($link):?>
                                 <a href="<?php echo $link; ?>" target="_blank">
                             <?php endif; ?>
-                                <img  src="<?php the_post_thumbnail_url( 'thumbnail' ); ?>" alt="">
+                                <img  src="<?php the_post_thumbnail_url( 'thumbnail' ); ?>" alt="post thumbnail">
                             <?php if($link):?>
                                 </a>
                             <?php endif; ?>
