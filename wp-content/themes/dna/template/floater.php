@@ -27,7 +27,7 @@
       </a>
     </div>
     <div class="col">
-      <a id="atendimento_email" target="_blank" href="mailto:contato@prestes.com">
+      <a id="atendimento_email" href="#" data-toggle="modal" data-target="#atendimentoporemailmodal">
         <div class="row no-gutters">
           <div class="icon">
             <?php echo file_get_contents("wp-content/themes/dna/svg/envelope.svg"); ?>
@@ -45,9 +45,8 @@
       }
     ?>
     <div class="col">
-      <a id="atendimento_whatsapp" 
-      target="_blank" 
-      href="https://api.whatsapp.com/send?phone=+5542998450001&l=pt_br&text=Ol%C3%A1,%20estava%20no%20site%20e%20quero%20saber%20mais%20detalhes<?php if(isset($singleImoveis)){echo" do empreendimento: ".$singleImoveis;} ?>.">
+      <a id="atendimento_whatsapp"
+      href="#" data-toggle="modal" data-target="#atendimentoporwhatsmodal">
         <div class="row no-gutters">              
           <div class="icon">
             <?php echo file_get_contents("wp-content/themes/dna/svg/whatsapp.svg"); ?>
@@ -73,4 +72,42 @@
       </a>
     </div>
   </div>
+</section>
+<section id="formsfloater">
+  <!-- no main.js em iniciaAtendimentoPorEmailTrigger()
+  tem de setar o input[name='redirect_to'] do form para o redirect -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="atendimentoporemailmodal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div role="main" id="atendimento-por-e-mail-8789164923009fd9d62d"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+  <script type="text/javascript"> new RDStationForms('atendimento-por-e-mail-8789164923009fd9d62d', 'UA-100759079-1').createForm();</script>
+  
+  <!-- atendimento por whats redireciona sozinho pelo rd -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="atendimentoporwhatsmodal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div role="main" id="atendimento-whatsapp-23a3548a6afd73c43d7e"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+  <script type="text/javascript"> new RDStationForms('atendimento-whatsapp-23a3548a6afd73c43d7e', 'UA-100759079-1').createForm();</script>
 </section>

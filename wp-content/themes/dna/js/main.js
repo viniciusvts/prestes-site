@@ -548,6 +548,21 @@ function iniciaSocialButtons(){
   }
   //sanpchat, linkedin, intagram
 }
+/** escuta o evento de envio do form do floater */
+function iniciaAtendimentoPorEmailTrigger() {
+  var count = 0;
+  const interval = setInterval(() => {
+    const input = document.querySelector('#atendimento-por-e-mail-8789164923009fd9d62d input[name="redirect_to"]');
+    console.log('setinterval debug');
+    console.log(count, input, input.value);
+    if (input || count > 360){ //3minutos
+      input.value = 'mailto:contato@prestes.com';
+      clearInterval(interval);
+    } else {
+      count ++;
+    }
+  }, 500);
+}
 
 window.addEventListener('resize', function(){
   setasNoCarrossel();
@@ -557,6 +572,7 @@ window.addEventListener('load', function(){
   	localizarUser();
     iniciaSocialButtons();
     setasNoCarrossel();
+    iniciaAtendimentoPorEmailTrigger();
     document.getElementById('custom-cat-drop').addEventListener('change', submitOnSelect);
    	// Init ScrollMagic
 	var controller = new ScrollMagic.Controller();  
