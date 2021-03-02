@@ -3,7 +3,7 @@
 
 <div class="bd-example slider-home" id="slider">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-
+    <h1 class="d-none">Prestes Construtora Incorporação Imobiliária no Paraná</h1>
     <ol class="carousel-indicators">
       <?php
         $imovel = new WP_Query(
