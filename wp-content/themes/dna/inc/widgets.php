@@ -112,7 +112,7 @@ class dna_listaCategorias_widget extends WP_Widget {
     ?>
     <ul>
       <?php $categorias = get_categories(); foreach($categorias as $categoria): ?>
-        <li><a href="<?php bloginfo('url');?>/category/<?php echo $categoria->slug; ?>"><?php echo $categoria->name; ?></a></li>
+        <li><a href="<?php bloginfo('url');?>/category/<?php echo $categoria->slug; ?>/"><?php echo $categoria->name; ?></a></li>
       <?php endforeach; ?>
     </ul>
     <?php

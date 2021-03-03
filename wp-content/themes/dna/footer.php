@@ -39,7 +39,7 @@
             ?>
           </div>
           <div class="col-md-3 animar">
-            <a href="<?php echo bloginfo( "url" ); ?>/central-de-vendas">
+            <a href="<?php echo bloginfo( "url" ); ?>/central-de-vendas/">
               <h4><?php echo(get_theme_mod( 'dnaTheme_setting_MenuFooterName3')); ?></h4>
             </a>
             <ul>

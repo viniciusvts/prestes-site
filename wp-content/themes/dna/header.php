@@ -44,7 +44,7 @@
           <ul class="options my-2 my-lg-0">
             <li>
               <?php echo file_get_contents("wp-content/themes/dna/svg/placeholder-filled-point.svg"); ?>
-              <a href="<?php bloginfo( "url" ); ?>/mapa">Mapa</a>
+              <a href="<?php bloginfo( "url" ); ?>/mapa/">Mapa</a>
             </li>
             <li>
               <?php echo file_get_contents("wp-content/themes/dna/svg/navigation.svg"); ?>
