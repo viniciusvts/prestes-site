@@ -119,3 +119,76 @@ function get_prev_page_link($maxNumberPages=null) {
     $uri = str_replace($paramURL.$paged, $paramURL.($paged-1), $URI_ATUAL);
     return $HOST_ATUAL.$uri;
 }
+
+/**
+ * Gera paginação dos posts no caso de queren páginas posteriores a próxima página
+ *
+ * @param int $maxNumberPages numero de páginas da query
+ * @param int $howMuchLess default: 1 para próxima página, mais para posteriores
+ * 
+ * @return string|null Uma string conteno o link previo ou posterior da página
+ * @author Vinicius de Santana
+ * @example get_next_page_link( wp_query->max_num_pages);
+ * @version 0.3
+ */
+function get_prevs_page_link($howMuchMore = 1, $maxNumberPages=null) {
+    global $wp_query;
+    $maxNumberPages = $maxNumberPages ? $maxNumberPages : $wp_query->max_num_pages;
+    $prevPage = isset( $_GET['sheet'] ) ? $_GET['sheet'] - $howMuchMore : 1 - $howMuchMore;
+    $HOST_ATUAL = "http://$_SERVER[HTTP_HOST]";
+    $URI_ATUAL = "$_SERVER[REQUEST_URI]";
+    //se é maior que quantidade total de páginas possiveis
+    if($prevPage <= 0) return null;
+    /*variável para evitar que o numero de pagina seja confundido 
+    com qualquer categoria que o usuário venha criar que contenha números*/
+    $paramURL = "sheet=";
+    //se tem pagina setada na url
+    if(isset($_GET['sheet'])){
+        //se não
+        $uri = str_replace($paramURL.$_GET['sheet'], $paramURL.$prevPage, $URI_ATUAL);
+        return $HOST_ATUAL.$uri;
+    }else{
+        //verifica se tem ? na url, ou seja, se já tem parametros
+        if(strpos($URI_ATUAL, "?") == false){
+            return $HOST_ATUAL.$URI_ATUAL."?".$paramURL.$prevPage;
+        }
+        return $HOST_ATUAL.$URI_ATUAL."&".$paramURL.$prevPage;
+    }
+}
+
+/**
+ * Gera paginação dos posts no caso de queren páginas anteriores a prev página
+ *
+ * @param int $maxNumberPages numero de páginas da query
+ * @param int $howMuchMore default: 1 para prev página, mais para anteriores
+ * 
+ * @return string|null Uma string conteno o link previo ou posterior da página
+ * @author Vinicius de Santana
+ * @example get_next_page_link( wp_query->max_num_pages);
+ * @version 0.3
+ */
+function get_nexts_page_link($howMuchLess = 1, $maxNumberPages=null) {
+    global $wp_query;
+    $maxNumberPages = $maxNumberPages ? $maxNumberPages : $wp_query->max_num_pages;
+    $nextPage = isset( $_GET['sheet'] ) ? $_GET['sheet'] + $howMuchLess : 1 + $howMuchLess;
+    $HOST_ATUAL = "http://$_SERVER[HTTP_HOST]";
+    $URI_ATUAL = "$_SERVER[REQUEST_URI]";
+    //se é maior que quantidade total de páginas possiveis
+    if($nextPage > $maxNumberPages) return null;
+    /*variável para evitar que o numero de pagina seja confundido 
+    com qualquer categoria que o usuário venha criar que contenha números*/
+    $paramURL = "sheet=";
+    //se o máximo de páginas for 1
+    if($maxNumberPages <= 1) return null;
+    //se tem pagina setada na url
+    if(isset($_GET['sheet'])){
+        $uri = str_replace($paramURL.$_GET['sheet'], $paramURL.$nextPage, $URI_ATUAL);
+        return $HOST_ATUAL.$uri;
+    }else{ //se não
+        //verifica se tem ? na url, ou seja, se já tem parametros
+        if(strpos($URI_ATUAL, "?") == false){
+            return $HOST_ATUAL.$URI_ATUAL."?".$paramURL.$nextPage;
+        }
+        return $HOST_ATUAL.$URI_ATUAL."&".$paramURL.$nextPage;
+    }
+}
