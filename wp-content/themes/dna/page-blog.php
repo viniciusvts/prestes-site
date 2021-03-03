@@ -83,7 +83,9 @@
                             $pageprev3 = get_prevs_page_link(3);
                             if ($pageprev3){
                             ?>
-                                <a href="<?php echo $pageprev3; ?>" class="mx-2">
+                                <a href="<?php echo $pageprev3; ?>"
+                                rel="prev"
+                                class="mx-2">
                                     <?php echo($_GET['sheet'] - 3); ?>
                                 </a>
                             <?php
@@ -91,7 +93,9 @@
                             $pageprev2 = get_prevs_page_link(2);
                             if ($pageprev2){
                             ?>
-                                <a href="<?php echo $pageprev2; ?>" class="mx-2">
+                                <a href="<?php echo $pageprev2; ?>"
+                                rel="prev"
+                                class="mx-2">
                                     <?php echo($_GET['sheet'] - 2); ?>
                                 </a>
                             <?php
@@ -99,7 +103,9 @@
                             $pageprev1 = get_prevs_page_link(1);
                             if ($pageprev1){
                             ?>
-                                <a href="<?php echo $pageprev1; ?>" class="mx-2">
+                                <a href="<?php echo $pageprev1; ?>"
+                                rel="prev"
+                                class="mx-2">
                                     <?php echo($_GET['sheet'] - 1); ?>
                                 </a>
                             <?php
@@ -112,7 +118,9 @@
                             $pagenext1 = get_nexts_page_link(1);
                             if ($pagenext1){
                             ?>
-                                <a href="<?php echo $pagenext1; ?>" class="mx-2">
+                                <a href="<?php echo $pagenext1; ?>"
+                                rel="next"
+                                class="mx-2">
                                     <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 1):2); ?>
                                 </a>
                             <?php
@@ -120,7 +128,9 @@
                             $pagenext2 = get_nexts_page_link(2);
                             if ($pagenext2){
                             ?>
-                                <a href="<?php echo $pagenext2; ?>" class="mx-2">
+                                <a href="<?php echo $pagenext2; ?>"
+                                rel="next"
+                                class="mx-2">
                                     <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 2):3); ?>
                                 </a>
                             <?php
@@ -128,7 +138,9 @@
                             $pagenext3 = get_nexts_page_link(3);
                             if ($pagenext3){
                             ?>
-                                <a href="<?php echo $pagenext3; ?>" class="mx-2">
+                                <a href="<?php echo $pagenext3; ?>"
+                                rel="next"
+                                class="mx-2">
                                     <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 3):4); ?>
                                 </a>
                             <?php
