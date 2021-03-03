@@ -71,7 +71,9 @@
                         if($prevLink){;
                         ?>
                         <div class="blockPress-btn">
-                            <a href="<?php echo ($prevLink); ?>" class="bttn-l">Anterior</a>
+                            <a href="<?php echo ($prevLink); ?>"
+                            rel="prev"
+                            class="bttn-l">Anterior</a>
                         </div>
                         <?php } ?>
                     </div>
@@ -87,7 +89,9 @@
                         if($nextLink){;
                         ?>
                             <div class="blockPress-btn">
-                                <a href="<?php echo ($nextLink); ?>" class="bttn">Próximo</a>
+                                <a href="<?php echo ($nextLink); ?>"
+                                rel="next"
+                                class="bttn">Próximo</a>
                             </div>
                         <?php } ?>
                     </div>

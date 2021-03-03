@@ -20,8 +20,7 @@
  * @version 0.3 second version
  */
 function get_paginate( $postType=null, $prevOrNext = 0, $postsPerPage = 0){
-    $paged = $_GET['sheet'];
-    $category = $_GET['category'];
+    $paged = isset($_GET['sheet'])?$_GET['sheet']:null;
     $HOST_ATUAL = "http://$_SERVER[HTTP_HOST]";
     $URI_ATUAL = "$_SERVER[REQUEST_URI]";
     $count_posts = wp_count_posts($postType);//obj->publish

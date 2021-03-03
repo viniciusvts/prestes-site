@@ -20,8 +20,8 @@
                 <div class="row">
                     
                     <!--the_loop here-->
-                    <?php
-                        $paged = $_GET['sheet'];
+                    <?php 
+                        $paged = isset($_GET['sheet'])?$_GET['sheet']:null;
                         $args = array("post_type"=>"revista-prestes",
                                     "posts_per_page"=> 6,
                                     "paged"=>$paged);
@@ -61,7 +61,7 @@
                         $prevLink = get_prev_page_link($wp_query->max_num_pages);
                         if($prevLink){
                         ?>                                   
-                            <a href="<?php echo($prevLink); ?>">Voltar</a>                                  
+                            <a href="<?php echo($prevLink); ?>" rel="prev">Voltar</a>                                  
                         <?php
                         }
                         ?>  
@@ -78,7 +78,7 @@
                         $nextLink = get_next_page_link($wp_query->max_num_pages);
                         if($nextLink){
                         ?>                                   
-                            <a href="<?php echo($nextLink); ?>">Próximo</a>                                  
+                            <a href="<?php echo($nextLink); ?>" rel="next">Próximo</a>                                  
                         <?php
                         }
                         ?>                            
