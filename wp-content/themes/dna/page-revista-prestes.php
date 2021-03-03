@@ -55,39 +55,105 @@
                     <?php endwhile; wp_reset_postdata();?>
                     <!--end the_loop-->
                 </div>
-                <div class="row page-links">                        
-                    <div class="col previous-link">
-                        <?php
-                        $prevLink = get_prev_page_link($wp_query->max_num_pages);
-                        if($prevLink){
-                        ?>                                   
-                            <a href="<?php echo($prevLink); ?>" rel="prev">Voltar</a>                                  
-                        <?php
-                        }
-                        ?>  
-                    </div>                    
-                    
-                    <div class="col page-inf">
-                        <?php if($wp_query->max_num_pages > 0):?>
-                            <h5>Página <?php if($paged == 0): echo $paged+=1; else: echo $paged; endif; ?> de <?php echo $wp_query->max_num_pages; ?></h5>                            
-                        <?php endif; ?>
+                <!--paginação-->
+                <div class="row">
+                    <div class="col-12 col-lg previous-link">
+                        <?php $prevLink = get_prevs_page_link();
+                        if($prevLink){;
+                        ?>
+                        <div class="blockPress-btn m-0 p-0 d-flex">
+                            <a href="<?php echo ($prevLink); ?>"
+                            rel="prev"
+                            class="bttn-l mr-auto">Anterior</a>
+                        </div>
+                        <?php } ?>
                     </div>
-                    
-                    <div class="col next-link">                            
+                    <div class="col-12 col-lg page-inf text-center align-self-center">
                         <?php
-                        $nextLink = get_next_page_link($wp_query->max_num_pages);
-                        if($nextLink){
-                        ?>                                   
-                            <a href="<?php echo($nextLink); ?>" rel="next">Próximo</a>                                  
+                        if($wp_query->max_num_pages > 0){
+                            $pageprev3 = get_prevs_page_link(3);
+                            if ($pageprev3){
+                            ?>
+                                <a href="<?php echo $pageprev3; ?>"
+                                rel="prev"
+                                class="mx-2">
+                                    <?php echo($_GET['sheet'] - 3); ?>
+                                </a>
+                            <?php
+                            }
+                            $pageprev2 = get_prevs_page_link(2);
+                            if ($pageprev2){
+                            ?>
+                                <a href="<?php echo $pageprev2; ?>"
+                                rel="prev"
+                                class="mx-2">
+                                    <?php echo($_GET['sheet'] - 2); ?>
+                                </a>
+                            <?php
+                            }
+                            $pageprev1 = get_prevs_page_link(1);
+                            if ($pageprev1){
+                            ?>
+                                <a href="<?php echo $pageprev1; ?>"
+                                rel="prev"
+                                class="mx-2">
+                                    <?php echo($_GET['sheet'] - 1); ?>
+                                </a>
+                            <?php
+                            }
+                            ?>
+                            <a href="#_" class="mx-2 text-black-50">
+                                <?php echo(isset($_GET['sheet'])?$_GET['sheet']:1); ?>
+                            </a>
+                            <?php
+                            $pagenext1 = get_nexts_page_link(1);
+                            if ($pagenext1){
+                            ?>
+                                <a href="<?php echo $pagenext1; ?>"
+                                rel="next"
+                                class="mx-2">
+                                    <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 1):2); ?>
+                                </a>
+                            <?php
+                            }
+                            $pagenext2 = get_nexts_page_link(2);
+                            if ($pagenext2){
+                            ?>
+                                <a href="<?php echo $pagenext2; ?>"
+                                rel="next"
+                                class="mx-2">
+                                    <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 2):3); ?>
+                                </a>
+                            <?php
+                            }
+                            $pagenext3 = get_nexts_page_link(3);
+                            if ($pagenext3){
+                            ?>
+                                <a href="<?php echo $pagenext3; ?>"
+                                rel="next"
+                                class="mx-2">
+                                    <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 3):4); ?>
+                                </a>
+                            <?php
+                            }
+                            ?>
                         <?php
                         }
-                        ?>                            
-                    </div>                    
-                    <?php 
-                        $wp_query = null; 
-                        $wp_query = $temp; 
-                    ?>
+                        ?>
+                    </div>
+                    <div class="col-12 col-lg next-link">
+                        <?php $nextLink = get_nexts_page_link();
+                        if($nextLink){;
+                        ?>
+                            <div class="blockPress-btn m-0 p-0 d-flex">
+                                <a href="<?php echo ($nextLink); ?>"
+                                rel="next"
+                                class="bttn ml-auto">Próximo</a>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
+                <!--fim paginação-->
             </div>
         </div>
     </div>
