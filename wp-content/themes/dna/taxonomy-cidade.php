@@ -136,5 +136,6 @@ chr_setPostViews( get_the_ID() );?>
 
 <?php get_template_part('template/depoimentos'); ?>
 <?php get_template_part('template/fale-com-um-consultor'); ?>
+<?php get_template_part( 'template/premios'); ?>
 
 <?php get_footer(); ?>

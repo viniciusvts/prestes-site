@@ -2109,6 +2109,10 @@ html {
   margin: 20px;
   font-weight: bold;
 }
+.bp-blog-cards .bp-card h4.bp-card-title {
+  font-size: inherit;
+  line-height: inherit;
+}
 .bp-blog-cards .bp-card .bp-card-category {
   text-transform: uppercase;
   margin: 0px 20px 0px;
@@ -2117,6 +2121,7 @@ html {
 .bp-blog-cards .bp-card .bp-card-content {
   margin: 20px;
   font-weight: lighter;
+  overflow: hidden;
 }
 .bp-blog-cards .detail {
   margin-bottom: 40px;

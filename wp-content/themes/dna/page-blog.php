@@ -46,14 +46,18 @@
                                 <div class="bp-card-spotlight-img">
                                     <?php the_post_thumbnail('large', array('class'=>'w-100 d-block')); ?>
                                 </div>
-                                <div class="bp-card-title">
+                                <h4 class="bp-card-title">
                                     <?php the_title();?>
-                                </div>
+                                </h4>
                                 <?php $categorias = wp_get_object_terms( $post->ID, 'category'); if(get_terms() != null): ?>
-                                    <div class="bp-card-category"><?php foreach($categorias as $categoria): echo " - "; echo $categoria->name; endforeach;?></div>
+                                    <p class="bp-card-category"><?php foreach($categorias as $categoria): echo " - "; echo $categoria->name; endforeach;?></p>
                                 <?php endif;?>
                                 <div class="bp-card-content">
-                                    <?php the_excerpt(); ?>
+                                    <?php
+                                    $content = get_the_content();
+                                    $stripContent = strip_tags($content);
+                                    echo("<p>".substr($stripContent, 0, 500)."[...]</p>");
+                                    ?>
                                 </div>
                             </div>
                             <div class="detail">
