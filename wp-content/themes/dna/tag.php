@@ -68,32 +68,26 @@ if(have_posts()){
                     <?php endwhile; ?>
                     <!--end the_loop-->
                 </div>
+                <!-- paginação -->
                 <div class="row page-links">
-                    
                     <div class="col previous-link">
-                        <?php $voltar = get_previous_posts_link('Voltar'); if($voltar == true):?>
-                        <a href="#">
-                            <h5><?php echo $voltar; ?></h5>
-                        </a>
-                        <?php endif; ?>
+                        <?php
+                        $voltar = get_previous_posts_link('— Voltar');
+                        if($voltar){
+                            echo $voltar;
+                        }
+                        ?>
                     </div>
-                   
-                    <!--
-                    <div class="col page-inf">
-                        <a href="#">
-                            <h5>PÁGINA 2 DE 5</h5>
-                        </a>
-                    </div>-->                    
-                    
                     <div class="col next-link">
-                        <?php $proximo = get_next_posts_link('Próximo'); if($proximo == true):?>
-                            <a href="#">
-                                <h5><?php echo $proximo; ?></h5>
-                            </a>
-                        <?php endif; ?>
+                        <?php
+                        $proximo = get_next_posts_link('Próximo —');
+                        if($proximo){
+                            echo $proximo;
+                        }
+                        ?>
                     </div>
-                    
                 </div>
+                <!-- fim paginação -->
             </div>
 
             
