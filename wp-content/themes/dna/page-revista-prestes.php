@@ -23,7 +23,7 @@
                     <?php 
                         $paged = isset($_GET['sheet'])?$_GET['sheet']:null;
                         $args = array("post_type"=>"revista-prestes",
-                                    "posts_per_page"=> 6,
+                                    "posts_per_page"=> 12,
                                     "paged"=>$paged);
                         global $wp_query;
                         $temp = $wp_query; 
