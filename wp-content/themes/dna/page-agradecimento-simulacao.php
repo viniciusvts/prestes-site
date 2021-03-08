@@ -1,4 +1,3 @@
-<?php /* Template Name: Basic */ ?>
 <?php
 /* vem de dna/page-simulador.php */
 // verifica google recaptcha
@@ -85,29 +84,19 @@ if(isset($_POST["nome"]) && $respCaptcha->success){
   $statusRD = $RDI->sendConversionEvent($conversionIdentifier, $data);
 }
 ?>
-<?php get_header(); ?>
-
-<div class="bd-example" id="slider">
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="caption">
-          <h1><?php the_title(); ?></h1>
-          <div class="breadcrumbs"><?php wp_custom_breadcrumbs(); ?></div>
-        </div>
-        <?php the_post_thumbnail('full', array('class' => 'img-fluid w-100 img-filter')); ?>
-      </div>      
+<?php
+/// job #18615 página com o mesmo layout de /agradecimento
+get_header();
+?>
+<div id="pg-404">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>Obrigado!</h1>
+        <h2>Recebemos seu contato.</h2>
+        <p>Em breve um de nossos consultores entrará em contato.</p>
+      </div>
     </div>
   </div>
 </div>
-
-<div id="about">
-  <div class="row">
-    <div class="col-12">
-      <?php if(have_posts()): the_post(); the_content(); endif; ?>
-    </div>
-  </div>
-</div>
-
-
 <?php get_footer(); ?>
