@@ -78,7 +78,11 @@ if(isset($_POST["nome"]) && $respCaptcha->success){
     );
     $data['legal_bases'] = $legal_bases;
   }
-  $statusRD = $RDI->sendConversionEvent('formSimulator', $data);
+  $conversionIdentifier = 'form-simulador';
+  if (isset($_POST['nomeDoEmpreendimento'])){
+    $conversionIdentifier .= '-'.$_POST['nomeDoEmpreendimento'];
+  }
+  $statusRD = $RDI->sendConversionEvent($conversionIdentifier, $data);
 }
 ?>
 <?php get_header(); ?>
