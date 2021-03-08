@@ -411,7 +411,11 @@ $idImovel = get_field('id_do_imovel')
       <input type="hidden" name="converteuEm" value="Fale com um consultor - empreendimento">
       <input type="hidden" name="empreendimentocliente" value="<?php the_title() ?>">
       <input type="hidden" name="idempreendimento" value="<?php echo get_field('id_do_imovel'); ?>">
-      <input type="hidden" name="falecomconsultorempreedimento" value="<?php echo $_SERVER["REQUEST_URI"] ?>">
+      <?php
+      // path, query
+      $url = parse_url($_SERVER["REQUEST_URI"]);
+      ?>
+      <input type="hidden" name="falecomconsultorempreedimento" value="<?php echo $url['path']; ?>">
       <input type="hidden" name="traffic_source" id="traffic_source">
       <input type="hidden" name="traffic_medium" id="traffic_medium">
       <input type="hidden" name="traffic_campaign" id="traffic_campaign">

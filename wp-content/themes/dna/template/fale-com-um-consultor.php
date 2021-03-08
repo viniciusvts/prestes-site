@@ -47,7 +47,11 @@
                 Eu concordo em receber comunicações.
             </label>
             <div style="display:none">
-                <input type="hidden" name="urlOrigem" id="urlOrigem" value="<?php echo $_SERVER["REQUEST_URI"] ?>">
+                <?php
+                // path, query
+                $url = parse_url($_SERVER["REQUEST_URI"]);
+                ?>
+                <input type="hidden" name="urlOrigem" id="urlOrigem" value="<?php echo $url['path']; ?>">
                 <input type="hidden" name="traffic_source" id="traffic_source">
                 <input type="hidden" name="traffic_medium" id="traffic_medium">
                 <input type="hidden" name="traffic_campaign" id="traffic_campaign">
