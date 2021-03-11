@@ -411,6 +411,13 @@ $idImovel = get_field('id_do_imovel')
       <input type="hidden" name="converteuEm" value="Fale com um consultor - empreendimento">
       <input type="hidden" name="empreendimentocliente" value="<?php the_title() ?>">
       <input type="hidden" name="idempreendimento" value="<?php echo get_field('id_do_imovel'); ?>">
+      <div class="col-12">
+          <div class="pageshow-title row">
+              <div class="g-recaptcha mx-auto"
+              data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"
+              data-callback="gcCallback"></div>
+          </div>
+      </div>
       <?php
       // path, query
       $url = parse_url($_SERVER["REQUEST_URI"]);
@@ -434,6 +441,13 @@ $idImovel = get_field('id_do_imovel')
       </div>
     </div>
   </form>
+  <!-- recapctch google #17453 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+      function gcCallback(evt){
+          if(evt){ document.querySelector('#falecomconsultorempreedimento').setAttribute('data-gcok', true) }
+      }
+  </script>
   <script>
     /** https://www.w3schools.com/js/js_cookies.asp */
     function getCookie(cname) {
@@ -466,10 +480,12 @@ $idImovel = get_field('id_do_imovel')
       }
       return '';
     }
-    document.querySelector('form#falecomconsultorempreedimento #traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
-    document.querySelector('form#falecomconsultorempreedimento #traffic_medium').value = getUriParam('utm_medium')
-    document.querySelector('form#falecomconsultorempreedimento #traffic_campaign').value = getUriParam('utm_campaign')
-    document.querySelector('form#falecomconsultorempreedimento #traffic_value').value = getUriParam('utm_term')
+    window.addEventListener('load', function(){
+      document.querySelector('form#falecomconsultorempreedimento #traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
+      document.querySelector('form#falecomconsultorempreedimento #traffic_medium').value = getUriParam('utm_medium')
+      document.querySelector('form#falecomconsultorempreedimento #traffic_campaign').value = getUriParam('utm_campaign')
+      document.querySelector('form#falecomconsultorempreedimento #traffic_value').value = getUriParam('utm_term')
+    });
     // envia o formulário
     document.getElementById('falecomconsultorempreedimento').addEventListener('submit',function(evt){
       // valida telefone
@@ -478,6 +494,11 @@ $idImovel = get_field('id_do_imovel')
           alert('Número de telefone incorreto')
       }
       evt.preventDefault()
+      const gcok = evt.target.getAttribute('data-gcok');
+      if( !gcok ) {
+          alert("Preencha o desafio");
+          return;
+      }
       const formData = new FormData(evt.target)
       const url = evt.target.action
       fetch(url,  {

@@ -34,76 +34,84 @@ function dnaapi_personalizeLPBaixouBook(){
  * @author Vinicius de Santana
  */
 function dnaapi_falecomconsultorempreedimento(){
-  $nome = $_POST["name"];
-  $email = $_POST["email"];
-  $tel = $_POST["telefone"];
-  $urlOrigem = $_POST["urlOrigem"];
-  $convertido = $_POST['converteuEm'];
-  $empreendimento = $_POST["empreendimentocliente"];
-  $idempreendimento = $_POST["idempreendimento"];
-  /** se consentiu com o envio de comunicações */
-  $communicationsconsent = isset($_POST["communicationsconsent"]);
+  if(isset($_POST['g-recaptcha-response'])){
+    $respCaptcha = gCaptchaVerify('6LdEi0UaAAAAADTwU3fYJHMQpBXKXz3sIxRScpOs',
+      $_POST['g-recaptcha-response'],
+      $_SERVER['REMOTE_ADDR']
+    );
+  }
+  if($respCaptcha->success){
+    $nome = $_POST["name"];
+    $email = $_POST["email"];
+    $tel = $_POST["telefone"];
+    $urlOrigem = $_POST["urlOrigem"];
+    $convertido = $_POST['converteuEm'];
+    $empreendimento = $_POST["empreendimentocliente"];
+    $idempreendimento = $_POST["idempreendimento"];
+    /** se consentiu com o envio de comunicações */
+    $communicationsconsent = isset($_POST["communicationsconsent"]);
 
-  //send email
-  $to = "marketing@prestes.com";
-  $subject = $convertido;
-  $message = "Nome: ".$nome
-      ."<br>Email: ".$email
-      ."<br>Telefone: ".$tel
-      ."<br>Url de Origem: ".$urlOrigem
-      ."<br>Converteu em: ".$convertido
-      ."<br>Empreendimento de Interesse: ".$empreendimento
-      ."<br>Id do Empreendimento: ".$idempreendimento;
-  $headers = array('Content-Type: text/html; charset=UTF-8');
-  $wpmail = wp_mail( $to, $subject, $message, $headers );
-  // envio para o RD
-  $RDI = new Rdi_wp();
-  $getContact = $RDI->getContactByEmail($email);
-  // se há registro do contato removo as tag
-  if ($getContact){
-    // novas tag a serem inseridas, neste caso
-    $newtags = array(
-      "tags" => array()
-    );
-    $esdited = $RDI->editContact($getContact->uuid, $newtags);
-  }
-  // envio a conversão
-  $data = array(
-    'name' => $nome,
-    'email' => $email,
-    'personal_phone' => $tel,
-    'cf_origem' => $urlOrigem,
-    'cf_empreendimentocliente' => $empreendimento,
-    'cf_id_empreendimento' => $idempreendimento,
-    'traffic_source' => $_POST['traffic_source'],
-    'traffic_medium' => $_POST['traffic_medium'],
-    'traffic_campaign' => $_POST['traffic_campaign'],
-    'traffic_value' => $_POST['traffic_value'],
-  );
-  // se consentiu com o envio de informações
-  if ($communicationsconsent){
-    $legal_bases = array(
-      array(
-        "category" => "communications",
-        "type" => "consent",
-        "status" => "granted"
-      ),
-    );
-    $data['legal_bases'] = $legal_bases;
-  }
-  $statusRD = $RDI->sendConversionEvent($_POST["falecomconsultorempreedimento"], $data);
-  // foi enviado ok? então vejo se consentiu o envio de informações
-  if ($statusRD) {
-    // Se não tenho o user, busco-o 
-    if (!$getContact){
-      $getContact = $RDI->getContactByEmail($email);
+    //send email
+    $to = "marketing@prestes.com";
+    $subject = $convertido;
+    $message = "Nome: ".$nome
+        ."<br>Email: ".$email
+        ."<br>Telefone: ".$tel
+        ."<br>Url de Origem: ".$urlOrigem
+        ."<br>Converteu em: ".$convertido
+        ."<br>Empreendimento de Interesse: ".$empreendimento
+        ."<br>Id do Empreendimento: ".$idempreendimento;
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    $wpmail = wp_mail( $to, $subject, $message, $headers );
+    // envio para o RD
+    $RDI = new Rdi_wp();
+    $getContact = $RDI->getContactByEmail($email);
+    // se há registro do contato removo as tag
+    if ($getContact){
+      // novas tag a serem inseridas, neste caso
+      $newtags = array(
+        "tags" => array()
+      );
+      $esdited = $RDI->editContact($getContact->uuid, $newtags);
     }
-  } else {
-    return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
-      'status' => 502,
-      'statusRD' => $statusRD,
-      'statusMail' => $wpmail,
-    ));
+    // envio a conversão
+    $data = array(
+      'name' => $nome,
+      'email' => $email,
+      'personal_phone' => $tel,
+      'cf_origem' => $urlOrigem,
+      'cf_empreendimentocliente' => $empreendimento,
+      'cf_id_empreendimento' => $idempreendimento,
+      'traffic_source' => $_POST['traffic_source'],
+      'traffic_medium' => $_POST['traffic_medium'],
+      'traffic_campaign' => $_POST['traffic_campaign'],
+      'traffic_value' => $_POST['traffic_value'],
+    );
+    // se consentiu com o envio de informações
+    if ($communicationsconsent){
+      $legal_bases = array(
+        array(
+          "category" => "communications",
+          "type" => "consent",
+          "status" => "granted"
+        ),
+      );
+      $data['legal_bases'] = $legal_bases;
+    }
+    $statusRD = $RDI->sendConversionEvent($_POST["falecomconsultorempreedimento"], $data);
+    // foi enviado ok? então vejo se consentiu o envio de informações
+    if ($statusRD) {
+      // Se não tenho o user, busco-o 
+      if (!$getContact){
+        $getContact = $RDI->getContactByEmail($email);
+      }
+    } else {
+      return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
+        'status' => 502,
+        'statusRD' => $statusRD,
+        'statusMail' => $wpmail,
+      ));
+    }
   }
   $url = 'https://www.prestes.com/agradecimento/';
   return array(
@@ -143,72 +151,80 @@ function dnaapi_feirao2020(){
  * @author Vinicius de Santana
  */
 function dnaapi_formcontato(){
-  $nome = $_POST["name"];
-  $email = $_POST["email"];
-  $tel = $_POST["telefone"];
-  $cidade = $_POST["cidade"];
-  $setor = $_POST["setor"];
-  $urlOrigem = $_POST["urlOrigem"];
-  $mensagem = $_POST["mensagem"];
-  $identificador = $_POST["identificador"];
-  /** se consentiu com o envio de comunicações */
-  $communicationsconsent = isset($_POST["communicationsconsent"]);
+  if(isset($_POST['g-recaptcha-response'])){
+    $respCaptcha = gCaptchaVerify('6LdEi0UaAAAAADTwU3fYJHMQpBXKXz3sIxRScpOs',
+      $_POST['g-recaptcha-response'],
+      $_SERVER['REMOTE_ADDR']
+    );
+  }
+  if($respCaptcha->success){
+    $nome = $_POST["name"];
+    $email = $_POST["email"];
+    $tel = $_POST["telefone"];
+    $cidade = $_POST["cidade"];
+    $setor = $_POST["setor"];
+    $urlOrigem = $_POST["urlOrigem"];
+    $mensagem = $_POST["mensagem"];
+    $identificador = $_POST["identificador"];
+    /** se consentiu com o envio de comunicações */
+    $communicationsconsent = isset($_POST["communicationsconsent"]);
 
-  //send email
-  $to = "marketing@prestes.com";
-  $subject = 'Formulário de contato em Preste.com';
-  $message = "Nome: ".$nome
-      ."<br>Email: ".$email
-      ."<br>Telefone: ".$tel
-      ."<br>Cidade: ".$cidade
-      ."<br>Setor: ".$setor
-      ."<br>Url de Origem: ".$urlOrigem
-      ."<br>Mensagem: ".$mensagem;
-  $headers = array('Content-Type: text/html; charset=UTF-8');
-  $wpmail = wp_mail( $to, $subject, $message, $headers );
-  // envio para o RD
-  $RDI = new Rdi_wp();
-  $getContact = $RDI->getContactByEmail($email);
-  // se há registro do contato removo as tag
-  if ($getContact){
-    // novas tag a serem inseridas, neste caso
-    $newtags = array(
-      "tags" => array()
+    //send email
+    $to = "marketing@prestes.com";
+    $subject = 'Formulário de contato em Preste.com';
+    $message = "Nome: ".$nome
+        ."<br>Email: ".$email
+        ."<br>Telefone: ".$tel
+        ."<br>Cidade: ".$cidade
+        ."<br>Setor: ".$setor
+        ."<br>Url de Origem: ".$urlOrigem
+        ."<br>Mensagem: ".$mensagem;
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    $wpmail = wp_mail( $to, $subject, $message, $headers );
+    // envio para o RD
+    $RDI = new Rdi_wp();
+    $getContact = $RDI->getContactByEmail($email);
+    // se há registro do contato removo as tag
+    if ($getContact){
+      // novas tag a serem inseridas, neste caso
+      $newtags = array(
+        "tags" => array()
+      );
+      $esdited = $RDI->editContact($getContact->uuid, $newtags);
+    }
+    // envio a conversão
+    $data = array(
+      'name' => $nome,
+      'email' => $email,
+      'personal_phone' => $tel,
+      'cf_origem' => $urlOrigem,
+      'cf_tipo_contato' => $setor, //cf_tipo_atendimento
+      'city' => $cidade,
+      'cf_mensagem' => $mensagem,
+      'traffic_source' => $_POST['traffic_source'],
+      'traffic_medium' => $_POST['traffic_medium'],
+      'traffic_campaign' => $_POST['traffic_campaign'],
+      'traffic_value' => $_POST['traffic_value'],
     );
-    $esdited = $RDI->editContact($getContact->uuid, $newtags);
-  }
-  // envio a conversão
-  $data = array(
-    'name' => $nome,
-    'email' => $email,
-    'personal_phone' => $tel,
-    'cf_origem' => $urlOrigem,
-    'cf_tipo_contato' => $setor, //cf_tipo_atendimento
-    'city' => $cidade,
-    'cf_mensagem' => $mensagem,
-    'traffic_source' => $_POST['traffic_source'],
-    'traffic_medium' => $_POST['traffic_medium'],
-    'traffic_campaign' => $_POST['traffic_campaign'],
-    'traffic_value' => $_POST['traffic_value'],
-  );
-  // se consentiu com o envio de informações
-  if ($communicationsconsent){
-    $legal_bases = array(
-      array(
-        "category" => "communications",
-        "type" => "consent",
-        "status" => "granted"
-      ),
-    );
-    $data['legal_bases'] = $legal_bases;
-  }
-  $statusRD = $RDI->sendConversionEvent($identificador, $data);
-  if (!$statusRD) {
-    return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
-      'status' => 502,
-      'statusRD' => $statusRD,
-      'statusMail' => $wpmail,
-    ));
+    // se consentiu com o envio de informações
+    if ($communicationsconsent){
+      $legal_bases = array(
+        array(
+          "category" => "communications",
+          "type" => "consent",
+          "status" => "granted"
+        ),
+      );
+      $data['legal_bases'] = $legal_bases;
+    }
+    $statusRD = $RDI->sendConversionEvent($identificador, $data);
+    if (!$statusRD) {
+      return new WP_Error( "Bad Gateway", 'Erro ao enviar para o rd', array(
+        'status' => 502,
+        'statusRD' => $statusRD,
+        'statusMail' => $wpmail,
+      ));
+    }
   }
   $url = 'https://www.prestes.com/sucesso/';
   return array(
@@ -227,61 +243,68 @@ function dnaapi_formcontato(){
  * @author Vinicius de Santana
  */
 function dnaapi_falecomconsultor(){
-  $nome = $_POST["name"];
-  $email = $_POST["email"];
-  $tel = $_POST["telefone"];
-  $city = $_POST["city"];
-  $urlOrigem = $_POST["urlOrigem"];
-  // define identificador
-  $identificador = $urlOrigem == "/" ? "/"."home/" : $urlOrigem;
-  /** se consentiu com o envio de comunicações */
-  $communicationsconsent = isset($_POST["communicationsconsent"]);
-
-  //send email
-  $to = "marketing@prestes.com";
-  $subject = 'Formulário de contato em Preste.com';
-  $message = "Nome: ".$nome
-      ."<br>Email: ".$email
-      ."<br>Telefone: ".$tel
-      ."<br>Cidade: ".$city
-      ."<br>Url de Origem: ".$urlOrigem;
-  $headers = array('Content-Type: text/html; charset=UTF-8');
-  $wpmail = wp_mail( $to, $subject, $message, $headers );
-  // envio para o RD
-  $RDI = new Rdi_wp();
-  $getContact = $RDI->getContactByEmail($email);
-  // se há registro do contato removo as tag
-  if ($getContact){
-    // novas tag a serem inseridas, neste caso
-    $newtags = array(
-      "tags" => array()
+  if(isset($_POST['g-recaptcha-response'])){
+    $respCaptcha = gCaptchaVerify('6LdEi0UaAAAAADTwU3fYJHMQpBXKXz3sIxRScpOs',
+      $_POST['g-recaptcha-response'],
+      $_SERVER['REMOTE_ADDR']
     );
-    $esdited = $RDI->editContact($getContact->uuid, $newtags);
   }
-  // envio a conversão
-  $data = array(
-    'name' => $nome,
-    'email' => $email,
-    'personal_phone' => $tel,
-    'city' => $city,
-    'cf_origem' => $urlOrigem,
-    'traffic_source' => $_POST['traffic_source'],
-    'traffic_medium' => $_POST['traffic_medium'],
-    'traffic_campaign' => $_POST['traffic_campaign'],
-    'traffic_value' => $_POST['traffic_value'],
-  );
-  // se consentiu com o envio de informações
-  if ($communicationsconsent){
-    $legal_bases = array(
-      array(
-        "category" => "communications",
-        "type" => "consent",
-        "status" => "granted"
-      ),
+  if($respCaptcha->success){
+    $nome = $_POST["name"];
+    $email = $_POST["email"];
+    $tel = $_POST["telefone"];
+    $city = $_POST["city"];
+    $urlOrigem = $_POST["urlOrigem"];
+    // define identificador
+    $identificador = $urlOrigem == "/" ? "/"."home/" : $urlOrigem;
+    /** se consentiu com o envio de comunicações */
+    $communicationsconsent = isset($_POST["communicationsconsent"]);
+    //send email
+    $to = "marketing@prestes.com";
+    $subject = 'Formulário de contato em Preste.com';
+    $message = "Nome: ".$nome
+        ."<br>Email: ".$email
+        ."<br>Telefone: ".$tel
+        ."<br>Cidade: ".$city
+        ."<br>Url de Origem: ".$urlOrigem;
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    $wpmail = wp_mail( $to, $subject, $message, $headers );
+    // envio para o RD
+    $RDI = new Rdi_wp();
+    $getContact = $RDI->getContactByEmail($email);
+    // se há registro do contato removo as tag
+    if ($getContact){
+      // novas tag a serem inseridas, neste caso
+      $newtags = array(
+        "tags" => array()
+      );
+      $esdited = $RDI->editContact($getContact->uuid, $newtags);
+    }
+    // envio a conversão
+    $data = array(
+      'name' => $nome,
+      'email' => $email,
+      'personal_phone' => $tel,
+      'city' => $city,
+      'cf_origem' => $urlOrigem,
+      'traffic_source' => $_POST['traffic_source'],
+      'traffic_medium' => $_POST['traffic_medium'],
+      'traffic_campaign' => $_POST['traffic_campaign'],
+      'traffic_value' => $_POST['traffic_value'],
     );
-    $data['legal_bases'] = $legal_bases;
+    // se consentiu com o envio de informações
+    if ($communicationsconsent){
+      $legal_bases = array(
+        array(
+          "category" => "communications",
+          "type" => "consent",
+          "status" => "granted"
+        ),
+      );
+      $data['legal_bases'] = $legal_bases;
+    }
+    $statusRD = $RDI->sendConversionEvent($identificador, $data);
   }
-  $statusRD = $RDI->sendConversionEvent($identificador, $data);
   $url ='https://www.prestes.com/agradecimento/';
   //vai para o url
   wp_redirect($url);

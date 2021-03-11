@@ -278,6 +278,7 @@ $termsCity = get_terms([
             }
         </script>
         <script>
+            window.addEventListener("load", load);
             /** https://www.w3schools.com/js/js_cookies.asp */
             function getCookie(cname) {
                 let name = `${cname}=`;
@@ -310,10 +311,15 @@ $termsCity = get_terms([
                 }
                 return '';
             }
-            document.getElementById('traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
-            document.getElementById('traffic_medium').value = getUriParam('utm_medium')
-            document.getElementById('traffic_campaign').value = getUriParam('utm_campaign')
-            document.getElementById('traffic_value').value = getUriParam('utm_term')
+            /** O evento de carga é disparado quando toda a página é carregada,
+            * incluindo todos os recursos dependentes, como folhas de estilo e imagens.
+            */
+            function load(evt) {
+                document.getElementById('traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src')
+                document.getElementById('traffic_medium').value = getUriParam('utm_medium')
+                document.getElementById('traffic_campaign').value = getUriParam('utm_campaign')
+                document.getElementById('traffic_value').value = getUriParam('utm_term')
+            }
         </script>
     </form><!--bp-simulador container-->
 </div>

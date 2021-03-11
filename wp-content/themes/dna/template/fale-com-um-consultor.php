@@ -46,6 +46,13 @@
                 checked>
                 Eu concordo em receber comunicações.
             </label>
+            <div class="col-12">
+                <div class="pageshow-title row">
+                    <div class="g-recaptcha mx-auto"
+                    data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"
+                    data-callback="gcCallback"></div>
+                </div>
+            </div>
             <div style="display:none">
                 <?php
                 // path, query
@@ -71,6 +78,24 @@
                 </div>
             </div>
         </form>
+        <!-- recapctch google #17453 -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script>
+            function gcCallback(evt){
+                if(evt){ document.querySelector('#central-de-vendas').setAttribute('data-gcok', true) }
+            }
+            //verifica se houve o evento do google captcha
+            const form = document.querySelector('#central-de-vendas');
+            form.addEventListener('submit', function(evt) {
+                evt.preventDefault();
+                const gcok = form.getAttribute('data-gcok');
+                if( !gcok ) {
+                    alert("Preencha o desafio");
+                    return;
+                }
+                document.forms["central-de-vendas"].submit();
+            });
+        </script>
         <script>
             /** https://www.w3schools.com/js/js_cookies.asp */
             function getCookie(cname) {

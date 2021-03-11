@@ -59,6 +59,13 @@
                 checked>
                 Eu concordo em receber comunicações.
             </label>
+            <div class="col-12">
+                <div class="pageshow-title row">
+                    <div class="g-recaptcha mx-auto"
+                    data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"
+                    data-callback="gcCallback"></div>
+                </div>
+            </div>
             <p>*Campos obrigatórios</p>
             <hr>
             <p>Fique tranquilo, suas informações estarão seguras conosco. Nós prometemos não utilizar para enviar quaisquer tipo de SPAM.</p>
@@ -73,6 +80,13 @@
                 </div>
             </div>
         </form>
+        <!-- recapctch google #17453 -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script>
+            function gcCallback(evt){
+                if(evt){ document.querySelector('#contato').setAttribute('data-gcok', true) }
+            }
+        </script>
         <script>
             /** https://www.w3schools.com/js/js_cookies.asp */
             function getCookie(cname) {
@@ -114,11 +128,16 @@
             // envia o formulário
             var formContato = document.getElementById('contato');
             formContato.addEventListener('submit',function(evt){
+                evt.preventDefault()
                 if(formContato.querySelector("#telInput").value.length < 14){
                     alert("Digite um telefone válido")
-                    evt.preventDefault()
+                    return;
                 }
-                evt.preventDefault()
+                const gcok = evt.target.getAttribute('data-gcok');
+                if( !gcok ) {
+                    alert("Preencha o desafio");
+                    return;
+                }
                 const formData = new FormData(evt.target)
                 const url = evt.target.action
                 fetch(url,  {
