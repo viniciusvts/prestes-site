@@ -18,7 +18,6 @@
         <div class="row">
             <div class="bp-blog-cards col-md-8 col-sm-12">
                 <div class="row">
-                    <!--pagination-->
                     <?php 
                         global $wp_query;
                         $paged= isset( $_GET['sheet'])?$_GET['sheet']:1;
@@ -28,7 +27,7 @@
                         $wp_query = new WP_Query(array('post_type' => 'post',
 							'posts_per_page'=> $postsPerPage,
 							'paged' => $paged,
-						));       
+						));
                     ?>        
 
                     <!--the_loop here-->            
@@ -68,105 +67,7 @@
                     <?php endwhile; ?>
                     <!--end the_loop-->
                 </div>
-                <!--paginação-->
-                <div class="row">
-                    <div class="col-12 col-lg previous-link">
-                        <?php $prevLink = get_prevs_page_link();
-                        if($prevLink){;
-                        ?>
-                        <div class="blockPress-btn m-0 p-0 d-flex">
-                            <a href="<?php echo ($prevLink); ?>"
-                            rel="prev"
-                            class="bttn-l mr-auto">Anterior</a>
-                        </div>
-                        <?php } ?>
-                    </div>
-                    <div class="col-12 col-lg page-inf text-center align-self-center">
-                        <?php
-                        if($wp_query->max_num_pages > 0){
-                            $pageprev3 = get_prevs_page_link(3);
-                            if ($pageprev3){
-                            ?>
-                                <a href="<?php echo $pageprev3; ?>"
-                                rel="prev"
-                                class="mx-2">
-                                    <?php echo($_GET['sheet'] - 3); ?>
-                                </a>
-                            <?php
-                            }
-                            $pageprev2 = get_prevs_page_link(2);
-                            if ($pageprev2){
-                            ?>
-                                <a href="<?php echo $pageprev2; ?>"
-                                rel="prev"
-                                class="mx-2">
-                                    <?php echo($_GET['sheet'] - 2); ?>
-                                </a>
-                            <?php
-                            }
-                            $pageprev1 = get_prevs_page_link(1);
-                            if ($pageprev1){
-                            ?>
-                                <a href="<?php echo $pageprev1; ?>"
-                                rel="prev"
-                                class="mx-2">
-                                    <?php echo($_GET['sheet'] - 1); ?>
-                                </a>
-                            <?php
-                            }
-                            ?>
-                            <a href="#_" class="mx-2 text-black-50">
-                                <?php echo(isset($_GET['sheet'])?$_GET['sheet']:1); ?>
-                            </a>
-                            <?php
-                            $pagenext1 = get_nexts_page_link(1);
-                            if ($pagenext1){
-                            ?>
-                                <a href="<?php echo $pagenext1; ?>"
-                                rel="next"
-                                class="mx-2">
-                                    <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 1):2); ?>
-                                </a>
-                            <?php
-                            }
-                            $pagenext2 = get_nexts_page_link(2);
-                            if ($pagenext2){
-                            ?>
-                                <a href="<?php echo $pagenext2; ?>"
-                                rel="next"
-                                class="mx-2">
-                                    <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 2):3); ?>
-                                </a>
-                            <?php
-                            }
-                            $pagenext3 = get_nexts_page_link(3);
-                            if ($pagenext3){
-                            ?>
-                                <a href="<?php echo $pagenext3; ?>"
-                                rel="next"
-                                class="mx-2">
-                                    <?php echo(isset($_GET['sheet'])?($_GET['sheet'] + 3):4); ?>
-                                </a>
-                            <?php
-                            }
-                            ?>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="col-12 col-lg next-link">
-                        <?php $nextLink = get_nexts_page_link();
-                        if($nextLink){;
-                        ?>
-                            <div class="blockPress-btn m-0 p-0 d-flex">
-                                <a href="<?php echo ($nextLink); ?>"
-                                rel="next"
-                                class="bttn ml-auto">Próximo</a>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-                <!--fim paginação-->
+                <?php get_template_part("/template/paginacao-dna"); ?>
             </div>
             <!-- start sidebar -->
             <?php get_template_part("/template/sidebar"); ?>
