@@ -105,11 +105,12 @@ function next(){
     }else if( page == 5){
         //verifica se houve o evento do google captcha
         const form = document.querySelector('#formSimulator');
-        const gcok = form.getAttribute('data-gcok');
-        if( !gcok ) {
+        const gcok = form.querySelector('[name="g-recaptcha-response"');
+        if( !gcok.value ) {
             alert("Preencha o desafio");
             return;
         }
+        console.log('gcok OK');
         document.forms["formSimulator"].submit();
     }
     if(page<5){

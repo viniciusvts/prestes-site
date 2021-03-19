@@ -49,8 +49,7 @@
             <div class="col-12">
                 <div class="pageshow-title row">
                     <div class="g-recaptcha mx-auto"
-                    data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"
-                    data-callback="gcCallback"></div>
+                    data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"></div>
                 </div>
             </div>
             <div style="display:none">
@@ -81,15 +80,12 @@
         <!-- recapctch google #17453 -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
-            function gcCallback(evt){
-                if(evt){ document.querySelector('#central-de-vendas').setAttribute('data-gcok', true) }
-            }
             //verifica se houve o evento do google captcha
             const form = document.querySelector('#central-de-vendas');
             form.addEventListener('submit', function(evt) {
                 evt.preventDefault();
-                const gcok = form.getAttribute('data-gcok');
-                if( !gcok ) {
+                const gcok = evt.target.querySelector('[name="g-recaptcha-response"');
+                if( !gcok.value ) {
                     alert("Preencha o desafio");
                     return;
                 }

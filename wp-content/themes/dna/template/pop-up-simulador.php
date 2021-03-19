@@ -242,8 +242,7 @@ $termsCity = get_terms([
                     <div class="col-12">
                         <div class="pageshow-title row">
                             <div class="g-recaptcha mx-auto"
-                            data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"
-                            data-callback="gcCallback"></div>
+                            data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"></div>
                         </div>
                     </div>
                     <input type="hidden" name="urlOrigem" value="<?php echo $_SERVER["REQUEST_URI"] ?>">
@@ -272,11 +271,6 @@ $termsCity = get_terms([
         </div>
         <!-- recapctch google #17453 -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script>
-            function gcCallback(evt){
-                if(evt){ document.querySelector('#formSimulator').setAttribute('data-gcok', true) }
-            }
-        </script>
         <script>
             window.addEventListener("load", load);
             /** https://www.w3schools.com/js/js_cookies.asp */

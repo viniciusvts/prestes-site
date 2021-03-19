@@ -414,8 +414,7 @@ $idImovel = get_field('id_do_imovel')
       <div class="col-12">
           <div class="pageshow-title row">
               <div class="g-recaptcha mx-auto"
-              data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"
-              data-callback="gcCallback"></div>
+              data-sitekey="6LdEi0UaAAAAAGZpCfy55RKory2cHlxTdqRS2a3z"></div>
           </div>
       </div>
       <?php
@@ -443,11 +442,6 @@ $idImovel = get_field('id_do_imovel')
   </form>
   <!-- recapctch google #17453 -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-      function gcCallback(evt){
-          if(evt){ document.querySelector('#falecomconsultorempreedimento').setAttribute('data-gcok', true) }
-      }
-  </script>
   <script>
     /** https://www.w3schools.com/js/js_cookies.asp */
     function getCookie(cname) {
@@ -494,8 +488,8 @@ $idImovel = get_field('id_do_imovel')
           alert('Número de telefone incorreto')
       }
       evt.preventDefault()
-      const gcok = evt.target.getAttribute('data-gcok');
-      if( !gcok ) {
+      const gcok = evt.target.querySelector('[name="g-recaptcha-response"');
+      if( !gcok.value ) {
           alert("Preencha o desafio");
           return;
       }
