@@ -3,7 +3,7 @@
     <?php echo file_get_contents("wp-content/themes/dna/svg/line-color.svg"); ?>
        
     <div class="form animar">
-        <form action="<?php echo bloginfo( "url" ) ?>/wp-json/dna_theme/v1/falecomconsultor/" method="POST" id="central-de-vendas">
+        <form action="<?php echo bloginfo( "url" ) ?>/wp-json/dna_theme/v1/falecomconsultor/" method="POST" id="falecomumconsultorformulario">
             <h3>Preencha todos os dados para que um de nossos corretores possa entrar em contato</h3>
             <label>
                 Seu nome*<br>
