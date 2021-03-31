@@ -81,7 +81,7 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             //verifica se houve o evento do google captcha
-            const form = document.querySelector('#central-de-vendas');
+            const form = document.querySelector('#falecomumconsultorformulario');
             form.addEventListener('submit', function(evt) {
                 evt.preventDefault();
                 const gcok = evt.target.querySelector('[name="g-recaptcha-response"');
@@ -89,7 +89,7 @@
                     alert("Preencha o desafio");
                     return;
                 }
-                document.forms["central-de-vendas"].submit();
+                document.forms["falecomumconsultorformulario"].submit();
             });
         </script>
         <script>
@@ -125,10 +125,10 @@
                 return '';
             }
             window.addEventListener('load', function(){
-                document.querySelector('#central-de-vendas #traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src');
-                document.querySelector('#central-de-vendas #traffic_medium').value = getUriParam('utm_medium');
-                document.querySelector('#central-de-vendas #traffic_campaign').value = getUriParam('utm_campaign');
-                document.querySelector('#central-de-vendas #traffic_value').value = getUriParam('utm_term');
+                document.querySelector('#falecomumconsultorformulario #traffic_source').value = getUriParam('utm_source') ? getUriParam('utm_source') : getCookie('__trf.src');
+                document.querySelector('#falecomumconsultorformulario #traffic_medium').value = getUriParam('utm_medium');
+                document.querySelector('#falecomumconsultorformulario #traffic_campaign').value = getUriParam('utm_campaign');
+                document.querySelector('#falecomumconsultorformulario #traffic_value').value = getUriParam('utm_term');
             });
         </script>
     </div>
