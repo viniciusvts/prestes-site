@@ -1,6 +1,6 @@
 <section id="consultant">       
     <div class="form animar">
-        <form action="<?php echo bloginfo( "url" ) ?>/wp-json/dna_theme/v1/formcontato/" method="POST" id="contato">
+        <form action="<?php echo bloginfo( "url" ) ?>/wp-json/dna_theme/v1/formcontato/" method="POST" id="contatoform">
             <h3>Preencha todos os dados para que um de nossos corretores possa entrar em contato</h3>
             <label>
                 Nome*<br>
