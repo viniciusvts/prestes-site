@@ -120,7 +120,7 @@
                 document.getElementById('traffic_value').value = getUriParam('utm_term');
             });
             // envia o formulário
-            var formContato = document.getElementById('contato');
+            var formContato = document.getElementById('contatoform');
             formContato.addEventListener('submit',function(evt){
                 evt.preventDefault()
                 if(formContato.querySelector("#telInput").value.length < 14){
