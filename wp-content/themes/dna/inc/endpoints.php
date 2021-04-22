@@ -359,6 +359,11 @@ function dnaapi_register_ccp(){
       'methods' => 'POST',
       'callback' => 'dnaapi_personalizeLP',
       'description' => 'recebe as informações do form e envia um email notificando o adm do site',
+      'args' => array(
+        'email' => array(
+          'required' => true,
+        ),
+      )
     )
   );
   //baixou book
