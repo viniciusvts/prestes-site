@@ -1,4 +1,5 @@
 <?php
+// https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 /**
  * Atende a requisição enviando um email para o adm do site
  * @author Vinicius de Santana
@@ -312,6 +313,41 @@ function dnaapi_falecomconsultor(){
 }
 
 /**
+ * Atende a requisição e atualiza o dono do lead com um dos campos do form
+ * tarefa #20007
+ * @author Vinicius de Santana
+ */
+function dnaapi_updateLeadOwner(WP_REST_Request $request){
+  // $allparams = $request->get_params();
+  $contactInfo = $request->get_param('contact');
+  $contactId = isset($contactInfo['uuid']) ? $contactInfo['uuid'] : $contactInfo['email'];
+  if($contactId && isset($contactInfo['cf_dono_do_lead'])){
+    // prepare data
+    $data = array("contact_owner_email" => $contactInfo['cf_dono_do_lead']);
+    $RDI = new Rdi_wp();
+    $statusRD = $RDI->putFunnel($contactId, $data);
+  } else {
+    return new WP_Error(
+      'Bad request', 'Contact has no id, email or leadOwner field',
+      array( 'status' => 400 ),
+    );
+  }
+  if ($statusRD->errors){
+    $response = array(
+      'status' => 502,
+      'RDresponse' => $statusRD,
+    );
+    return new WP_Error( 'Bad gateway', 'RD return an error', $response);
+  }
+  // Create the response object
+  $response = new WP_REST_Response( $statusRD );
+  // Add a custom status code: $response->set_status( 201 );
+  // Add a custom header: $response->header( 'Location', 'http://example.com/' );
+
+  return $response;
+}
+
+/**
  * Função registra os endpoints
  * @author Vinicius de Santana
  */
@@ -323,11 +359,6 @@ function dnaapi_register_ccp(){
       'methods' => 'POST',
       'callback' => 'dnaapi_personalizeLP',
       'description' => 'recebe as informações do form e envia um email notificando o adm do site',
-      'args' => array(
-        'email' => array(
-          'required' => true,
-        ),
-      )
     )
   );
   //baixou book
@@ -398,6 +429,21 @@ function dnaapi_register_ccp(){
           'required' => true,
         ),
       )
+    )
+  );
+  // rd station webhook update lead owner
+  register_rest_route('dna_theme/v1',
+    '/updateleadowner',
+    array(
+      'methods' => 'POST',
+      'callback' => 'dnaapi_updateLeadOwner',
+      'description' => 'Recebe o webkook do RD e utiliza um campo do lead para atualizar o dono do lead',
+      'args' => array(
+        'contact' => array(
+          'required' => true,
+        ),
+      ),
+      'permission_callback' => '__return_true',
     )
   );
 }
