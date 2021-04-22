@@ -354,14 +354,6 @@ function dnaapi_updateLeadOwner(WP_REST_Request $request){
  * @author Vinicius de Santana
  */
 function dnaapi_updateLeadOwner_Api_1x(WP_REST_Request $request){
-  //##################################################################
-  $allparams = $request->get_params();
-  if(get_option('apss')){
-    update_option('apss', json_encode($allparams));
-  } else {
-    add_option('apss', json_encode($allparams));
-  }
-  //##################################################################
   $leads = $request->get_param('leads');
   $RDresponses = [];
   foreach ($leads as $lead) {
