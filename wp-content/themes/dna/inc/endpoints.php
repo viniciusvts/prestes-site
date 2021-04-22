@@ -321,9 +321,9 @@ function dnaapi_updateLeadOwner(WP_REST_Request $request){
   // $allparams = $request->get_params();
   $contactInfo = $request->get_param('contact');
   $contactId = isset($contactInfo['uuid']) ? $contactInfo['uuid'] : $contactInfo['email'];
-  if($contactId && isset($contactInfo['cf_dono_do_lead'])){
+  if($contactId && isset($contactInfo['cf_atendente'])){
     // prepare data
-    $data = array("contact_owner_email" => $contactInfo['cf_dono_do_lead']);
+    $data = array("contact_owner_email" => $contactInfo['cf_atendente']);
     $RDI = new Rdi_wp();
     $statusRD = $RDI->putFunnel($contactId, $data);
   } else {
