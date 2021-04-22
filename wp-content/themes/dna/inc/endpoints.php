@@ -447,8 +447,7 @@ function dnaapi_register_ccp(){
         'contact' => array(
           'required' => true,
         ),
-      ),
-      'permission_callback' => '__return_true',
+      )
     )
   );
 }
