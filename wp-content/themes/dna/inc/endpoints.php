@@ -349,6 +349,62 @@ function dnaapi_updateLeadOwner(WP_REST_Request $request){
 }
 
 /**
+ * Atende a requisição e atualiza o dono do lead com um dos campos do form
+ * tarefa #20007
+ * @author Vinicius de Santana
+ */
+function dnaapi_updateLeadOwner_Api_1x(WP_REST_Request $request){
+  //##################################################################
+  $allparams = $request->get_params();
+  if(get_option('apss')){
+    update_option('apss', json_encode($allparams));
+  } else {
+    add_option('apss', json_encode($allparams));
+  }
+  //##################################################################
+  $leads = $request->get_param('leads');
+  $RDresponses = [];
+  foreach ($leads as $lead) {
+    $contactId = isset($lead['uuid']) ? $lead['uuid'] : $lead['email'];
+    if($contactId && isset($lead['custom_fields']['Atendente'])){
+      // prepare data
+      $Atendente = $lead['custom_fields']['Atendente'];
+      $data = array("contact_owner_email" => $Atendente);
+      $RDI = new Rdi_wp();
+      $statusRD = $RDI->putFunnel($contactId, $data);
+      $RDresponses[] = $statusRD;
+    } else {
+      $RDresponses[] = array('errors' => 'Contact has no id, email or leadOwner field');
+      return new WP_Error(
+        'Bad request',
+        'Contact has no id, email or leadOwner field',
+        array(
+          'status' => 400,
+          'rdResponses' => $RDresponses,
+        )
+      );
+    }
+    if ($statusRD->errors){
+      $RDresponses[] = $statusRD;
+      $response = array(
+        'status' => 502,
+        'rdResponses' => $RDresponses,
+      );
+      return new WP_Error( 'Bad gateway', 'RD return an error', $response);
+    }
+  }
+  // Create the response object
+  $response = array(
+    'rdResponses' => $RDresponses,
+  );
+  $resp = new WP_REST_Response( $response );
+  // Add a custom status code: $response->set_status( 201 );
+  // Add a custom header: $response->header( 'Location', 'http://example.com/' );
+
+  return $resp;
+}
+
+/**
  * Função registra os endpoints
  * @author Vinicius de Santana
  */
@@ -446,6 +502,20 @@ function dnaapi_register_ccp(){
       'description' => 'Recebe o webkook do RD e utiliza um campo do lead para atualizar o dono do lead',
       'args' => array(
         'contact' => array(
+          'required' => true,
+        ),
+      )
+    )
+  );
+  // rd station webhook update lead owner pela api 1.x
+  register_rest_route('dna_theme/v1',
+    '/updateleadownerapi1x',
+    array(
+      'methods' => 'POST',
+      'callback' => 'dnaapi_updateLeadOwner_Api_1x',
+      'description' => 'Recebe o webkook do RD e utiliza um campo do lead para atualizar o dono do lead',
+      'args' => array(
+        'leads' => array(
           'required' => true,
         ),
       )
