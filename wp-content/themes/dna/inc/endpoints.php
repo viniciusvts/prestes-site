@@ -328,8 +328,9 @@ function dnaapi_updateLeadOwner(WP_REST_Request $request){
     $statusRD = $RDI->putFunnel($contactId, $data);
   } else {
     return new WP_Error(
-      'Bad request', 'Contact has no id, email or leadOwner field',
-      array( 'status' => 400 ),
+      'Bad request',
+      'Contact has no id, email or leadOwner field',
+      array( 'status' => 400 )
     );
   }
   if ($statusRD->errors){
