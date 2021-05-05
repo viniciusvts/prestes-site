@@ -396,6 +396,44 @@ function dnaapi_updateLeadOwner_Api_1x(WP_REST_Request $request){
   return $resp;
 }
 
+function dnaapi_rdendpoint(WP_REST_Request $request){
+  $params = $request->get_params();
+  // A url para redirecionar vem do endpoint
+  $urlToRedirect = $params['urlredirect'];
+  unset($params['urlredirect']); // não envio para o RD
+  // O identificador vem do endpoint
+  $identificador = $params['indentifier'];
+  unset($params['indentifier']); // não envio para o RD
+  
+  // envia email depois de excluir url e identificador
+  $to = "marketing@prestes.com";
+  $subject = 'Formulário de contato';
+  $message = '';
+  foreach ($params as $key => $value) {
+    $message .= $key . ': ' . $value . '<br/>';
+  }
+  $headers = array('Content-Type: text/html; charset=UTF-8');
+  $wpmail = wp_mail( $to, $subject, $message, $headers );
+  // end send email
+
+  // se consentiu com o envio de informações
+  if (isset($params['communicationsconsent'])){
+    $legal_bases = array(
+      array(
+        "category" => "communications",
+        "type" => "consent",
+        "status" => "granted"
+      ),
+    );
+    $params['legal_bases'] = $legal_bases;
+    unset($params['communicationsconsent']); // não envio para o RD
+  }
+  $RDI = new Rdi_wp();
+  $statusRD = $RDI->sendConversionEvent($identificador, $params);
+  //vai para o url
+  wp_redirect($urlToRedirect);
+  exit;
+}
 /**
  * Função registra os endpoints
  * @author Vinicius de Santana
@@ -509,6 +547,28 @@ function dnaapi_register_ccp(){
       'args' => array(
         'leads' => array(
           'required' => true,
+        ),
+      )
+    )
+  );
+  // registra rota para envio de email e envio para o rd
+  register_rest_route('dna_theme/v1',
+    '/rd-endpoint',
+    array(
+      'methods' => 'POST',
+      'callback' => 'dnaapi_rdendpoint',
+      'description' => 'Recebe o webkook do RD e utiliza um campo do lead para atualizar o dono do lead',
+      'args' => array(
+        'email' => array(
+          'required' => true,
+        ),
+        'urlredirect' => array(
+          'required' => true,
+          'description' => 'será redirecionado para essa url quando terminar',
+        ),
+        'indentifier' => array(
+          'required' => true,
+          'description' => 'identificador do evento',
         ),
       )
     )
