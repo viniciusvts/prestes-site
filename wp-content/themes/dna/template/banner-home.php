@@ -56,7 +56,7 @@
             <?php
             } else if($fieldsBanner['video_or_mage'] == 'v'){
             ?>
-            <video autoplay loop muted>
+            <video autoplay loop muted class="d-block w-100 wp-post-image">
                 <source type="<?php echo($fieldsBanner['video'][0]['mime_type']); ?>" src="<?php echo($fieldsBanner['video'][0]['url']); ?>" />
             </video>
             <?php

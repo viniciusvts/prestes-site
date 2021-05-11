@@ -19,7 +19,7 @@
                 width: unset;
             }
         }
-        img{
+        img, video{
             height: 100%;
             max-height: 768px;
             /* object-position: right; */
@@ -147,7 +147,7 @@
          }
     }
 
-    img{
+    img, video{
         height: 210px;
         object-position: top left;
         object-fit: cover;
@@ -162,7 +162,7 @@
             height: 628px;
         }
     }
-    &.slider-home img{
+    &.slider-home img, video{
         object-position: top center;
     }
 }
