@@ -557,7 +557,7 @@ function dnaapi_register_ccp(){
     array(
       'methods' => 'POST',
       'callback' => 'dnaapi_rdendpoint',
-      'description' => 'Recebe o webkook do RD e utiliza um campo do lead para atualizar o dono do lead',
+      'description' => 'Recebe os dados do lead e converte no rd',
       'args' => array(
         'email' => array(
           'required' => true,
