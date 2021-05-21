@@ -10,8 +10,23 @@
     .blockpress-card{
         img{
             @include transition(0.2s all ease);
-            height: 250px;
+            height: 140px;
             object-fit: cover;
+            @media (min-width: $tablets) {
+                height: 350px;
+            }
+            @media (min-width: $desktops) {
+                height: 220px;
+            }
+            @media (min-width: $largeDesktops) {
+                height: 190px;
+            }
+            @media (min-width: $swDesktops) {
+                height: 290px;
+            }
+            @media (min-width: $desktops4k) {
+                height: 400px;
+            }
         }
         img:hover{
             filter: brightness(110%);

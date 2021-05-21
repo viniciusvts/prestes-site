@@ -805,8 +805,33 @@ html {
   -moz-transition-delay: 2s;
   -ms-transition-delay: 2s;
   -o-transition-delay: 2s;
-  height: 250px;
+  height: 140px;
   object-fit: cover;
+}
+@media (min-width: 767.98px) {
+  #development .blockpress-card img {
+    height: 350px;
+  }
+}
+@media (min-width: 991.98px) {
+  #development .blockpress-card img {
+    height: 220px;
+  }
+}
+@media (min-width: 1199.98px) {
+  #development .blockpress-card img {
+    height: 190px;
+  }
+}
+@media (min-width: 2499.98px) {
+  #development .blockpress-card img {
+    height: 290px;
+  }
+}
+@media (min-width: 2999.98px) {
+  #development .blockpress-card img {
+    height: 400px;
+  }
 }
 #development .blockpress-card img:hover {
   filter: brightness(110%);
