@@ -68,16 +68,16 @@
             <div class="col-md-3 filtro <?php echo $value->slug; ?>">
                 <a href="<?php the_permalink(); ?>">
                     <div class="blockpress-card">
-                        <div class="bp-card-spotlight-text">
-                            <?php foreach($categorias as $categoria): echo $categoria->name; endforeach; ?>
-                        </div>
-                        <?php the_post_thumbnail('large', array('class'=>'d-block w-100')); ?>
+                        <img  src="<?php the_post_thumbnail_url( 'medium' ); ?>"
+                        class="d-block w-100 wp-post-image"
+                        alt="thumbnail empreedimentos">
                         <div class="description">
                             <div class="container-fluid">
                                 <div class="row no-gutters">
                                     <div class="col-5">
                                         <h4><?php the_title(); ?></h4>
                                         <h5><?php foreach($cidades as $cidade): echo $cidade->name; endforeach; ?>  /  <?php foreach($estados as $estado): echo $estado->name; endforeach; ?></h5>
+                                        <h6><?php foreach($categorias as $categoria): echo $categoria->name; endforeach; ?></h6>
                                     </div>
                                     <div class="col-7">
                                         <div class="container-fluid attributes">
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="detail">
-                            <?php echo file_get_contents("wp-content/themes/dna/svg/filete-card.svg"); ?>
+                            <img src="<?php echo(get_template_directory_uri()); ?>/svg/filete-card.svg" alt="fillete prestes">
                         </div>
                     </div>
                 </a>
